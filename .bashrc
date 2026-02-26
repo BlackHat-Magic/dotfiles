@@ -30,8 +30,8 @@ alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
 export EDITOR=nvim
 alias btw='neofetch'
-alias htop='bpytop'
-alias top='bpytop'
+alias htop='btm'
+alias top='btm'
 alias py='python'
 
 # >>> conda initialize >>>
