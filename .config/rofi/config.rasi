@@ -1,0 +1,163 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    terminal: "ghostty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+    display-run: "   Run ";
+    display-window: "   Window ";
+    sidebar-mode: true;
+}
+
+* {
+    background: #1e1e2e;
+    background-alt: #313244;
+    foreground: #cdd6f4;
+    selected: #cba6f7;
+    active: #a6e3a1;
+    urgent: #f38ba8;
+    text-color: @foreground;
+    border-color: @selected;
+    spacing: 0;
+}
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 600px;
+    background-color: @background;
+    border: 2px solid;
+    border-color: @border-color;
+    border-radius: 5px;
+    padding: 0;
+}
+
+mainbox {
+    padding: 12px;
+}
+
+inputbar {
+    background-color: @background-alt;
+    border-radius: 5px;
+    padding: 8px 12px;
+    spacing: 8px;
+    children: [prompt, entry];
+}
+
+prompt {
+    text-color: @selected;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: #6c7086;
+    text-color: @foreground;
+}
+
+listview {
+    margin: 12px 0 0 0;
+    spacing: 4px;
+    dynamic: true;
+    scrollbar: false;
+}
+
+element {
+    padding: 8px 12px;
+    spacing: 8px;
+    border-radius: 5px;
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element normal normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element normal urgent {
+    background-color: transparent;
+    text-color: @urgent;
+}
+
+element normal active {
+    background-color: transparent;
+    text-color: @active;
+}
+
+element alternate normal {
+    background-color: #181825;
+    text-color: @foreground;
+}
+
+element alternate urgent {
+    background-color: #181825;
+    text-color: @urgent;
+}
+
+element alternate active {
+    background-color: #181825;
+    text-color: @active;
+}
+
+element selected normal {
+    background-color: @background-alt;
+    text-color: @selected;
+}
+
+element selected urgent {
+    background-color: @background-alt;
+    text-color: @urgent;
+}
+
+element selected active {
+    background-color: @background-alt;
+    text-color: @active;
+}
+
+element-icon {
+    size: 20px;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+mode-switcher {
+    margin: 12px 0 0 0;
+    spacing: 4px;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: @background-alt;
+    text-color: #6c7086;
+    border-radius: 5px;
+}
+
+button selected {
+    background-color: @selected;
+    text-color: @background;
+}
+
+message {
+    margin: 12px 0 0 0;
+    padding: 8px 12px;
+    background-color: @background-alt;
+    border-radius: 5px;
+}
+
+error-message {
+    padding: 12px;
+    background-color: @background;
+    text-color: @urgent;
+    border: 2px solid;
+    border-color: @urgent;
+    border-radius: 5px;
+}
