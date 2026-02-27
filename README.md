@@ -3,9 +3,9 @@
 Requires the following arch packages:
 
 ```sh
-sudo pacman -S brightnessctl cliphist flatpak ghostty hyprland mako nwg-look rofi \
-    rofi-calc superfile ttf-nerd-fonts ttf-nerd-fonts-common ttf-nerd-fonts-mono \
-    waybar
+sudo pacman -S bottom brightnessctl cliphist flatpak ghostty hyprland mako nwg-look \
+    rofi rofi-calc superfile ttf-nerd-fonts ttf-nerd-fonts-common \
+    ttf-nerd-fonts-mono waybar
 ```
 
 Requires the following AUR packages:
