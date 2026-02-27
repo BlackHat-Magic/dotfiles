@@ -1,10 +1,23 @@
 # Dotfiles
 
-Requires `brightnessctl`, `cliphist`, `ghostty`, `hyprland`, `mako`, `nwg-look`, `rofi`, `rofi-calc`, `superfile`, `ttf-nerd-fonts`, `waybar`, `catppuccin-cursors-mocha` (AUR), and `catppuccin-gtk-theme-mocha` (AUR)
+Requires the following arch packages:
 
 ```sh
-sudo pacman -S brightnessctl cliphist ghostty hyprland mako nwg-look rofi rofi-calc ttf-nerd-fonts ttf-nerd-fonts-common ttf-nerd-fonts-mono waybar
-paru -S catppuccin-cursors-mocha, catppuccin-gtk-theme-mocha
+sudo pacman -S brightnessctl cliphist flatpak ghostty hyprland mako nwg-look rofi \
+    rofi-calc superfile ttf-nerd-fonts ttf-nerd-fonts-common ttf-nerd-fonts-mono \
+    waybar
+```
+
+Requires the following AUR packages:
+
+```sh
+paru -S catppuccin-cursors-mocha catppuccin-gtk-theme-mocha
+```
+
+Requires the following flatpak packages:
+
+```sh
+flatpak install org.mozilla.firefox
 ```
 
 ## TODO
