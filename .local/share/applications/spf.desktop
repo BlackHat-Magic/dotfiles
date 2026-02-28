@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Superfile
+Comment=Terminal file manager
+Exec=ghostty -e spf %l
+Icon=system-file-manager
+Terminal=false
+Categories=System;FileTools;FileManager;
+MimeType=inode/directory;

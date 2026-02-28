@@ -1,0 +1,4 @@
+
+[Default Applications]
+inode/directory=spf.desktop
+x-scheme-handler/file=spf.desktop
