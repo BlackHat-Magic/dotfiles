@@ -1,0 +1,142 @@
+[
+    {
+        "name": "bar-ultrawide",
+        "output": "DP-2",
+        "layer": "top",
+        "position": "top",
+        "height": 36,
+        "margin-top": 8,
+        "margin-bottom": 0,
+        "margin-left": 1288,
+        "margin-right": 1288,
+        "spacing": 8,
+
+        "modules-center": ["clock"],
+        "modules-right": ["pulseaudio", "battery", "upower", "cpu", "memory"],
+
+        "clock": {
+            "format": "{:%a %b %d %I:%M %p}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        },
+
+        "pulseaudio": {
+            "scroll-step": 5,
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} {volume}% ",
+            "format-bluetooth-muted": "  {icon}",
+            "format-muted": " ",
+            "format-source": "{volume}%",
+            "format-source-muted": "",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "on-click": "pavucontrol"
+        },
+
+        "battery": {
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon} {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
+            "format-alt": "{icon} {time}",
+            "format-icons": ["", "", "", "", ""]
+        },
+
+        "upower": {
+            "icon-size": 20,
+            "hide-if-empty": true,
+            "tooltip": true,
+            "tooltip-spacing": 20
+        },
+
+        "cpu": {
+            "format": " {usage}%",
+            "tooltip": true
+        },
+
+        "memory": {
+            "format": " {}%",
+            "tooltip-format": "{used:0.1f}G / {total:0.1f}G used"
+        }
+    },
+    {
+        "name": "bar-default",
+        "output": "eDP-1",
+        "layer": "top",
+        "position": "top",
+        "height": 36,
+        "margin-top": 8,
+        "margin-bottom": 0,
+        "margin-left": 20,
+        "margin-right": 20,
+        "spacing": 8,
+
+        "modules-center": ["clock"],
+        "modules-right": ["pulseaudio", "battery", "upower", "cpu", "memory"],
+
+        "clock": {
+            "format": "{:%a %b %d %I:%M %p}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        },
+
+        "pulseaudio": {
+            "scroll-step": 5,
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} {volume}% ",
+            "format-bluetooth-muted": "  {icon}",
+            "format-muted": " ",
+            "format-source": "{volume}%",
+            "format-source-muted": "",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "on-click": "pavucontrol"
+        },
+
+        "battery": {
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon} {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
+            "format-alt": "{icon} {time}",
+            "format-icons": ["", "", "", "", ""]
+        },
+
+        "upower": {
+            "icon-size": 20,
+            "hide-if-empty": true,
+            "tooltip": true,
+            "tooltip-spacing": 20
+        },
+
+        "cpu": {
+            "format": " {usage}%",
+            "tooltip": true
+        },
+
+        "memory": {
+            "format": " {}%",
+            "tooltip-format": "{used:0.1f}G / {total:0.1f}G used"
+        }
+    }
+]

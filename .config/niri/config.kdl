@@ -1,0 +1,218 @@
+// Ported from Hyprland config
+// https://github.com/niri-wm/niri/wiki/Configuration:-Introduction
+
+environment {
+    XCURSOR_THEME "catppuccin-mocha-mauve-cursors"
+    XCURSOR_SIZE "24"
+    DISPLAY ":0"
+    XDG_SESSION_TYPE "wayland"
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+
+    touchpad {
+        tap
+        // natural-scroll disabled in hyprland
+    }
+
+    mouse {
+        // natural-scroll disabled in hyprland
+    }
+}
+
+output "DP-2" {
+    mode "5120x1440"
+    position x=0 y=0
+    scale 1
+}
+
+output "eDP-1" {
+    // mode "1920x1080"
+    position x=5120 y=0
+    scale 1
+}
+
+layout {
+    gaps 20
+    center-focused-column "never"
+    always-center-single-column
+
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.33333
+	proportion 0.5
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+        width 2
+        active-gradient from="#cba6f7" to="#f5c2e7" angle=45
+        inactive-color "#585b70aa"
+        urgent-color "#f38ba8"
+    }
+
+    shadow {
+        on
+        softness 4
+        spread 0
+        offset x=0 y=0
+        color "#11111bee"
+    }
+
+    struts {
+        left -15
+        right -15
+        top -15
+        bottom -15
+    }
+
+    background-color "#1e1e2e"
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+animations {
+    slowdown 1.0
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+window-rule {
+    geometry-corner-radius 5
+    clip-to-geometry true
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.98
+}
+
+
+window-rule {
+    match app-id="org.prismlauncher.PrismLauncher"
+    open-floating true
+}
+
+window-rule {
+    match app-id="steam"
+    open-floating true
+}
+
+window-rule {
+    match app-id="virt-manager"
+    open-floating true
+}
+
+spawn-sh-at-startup "waybar -c ~/.config/waybar/config-niri"
+spawn-at-startup "mako"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
+
+binds {
+    Mod+Shift+Slash { spawn "ghostty -e less ~/.config/niri/cheetsheet.md"; }
+
+    Mod+Return { spawn "ghostty"; }
+    Mod+Q { close-window; }
+    Mod+Shift+E { quit; }
+    Mod+T { spawn "ghostty" "-e" "spf"; }
+    Mod+Grave { spawn-sh "killall rofi || rofi -show drun"; }
+    Alt+Grave { spawn-sh "killall rofi || rofi -show calc -modi calc -no-show-match -no-sort"; }
+    Mod+V { spawn-sh "killall rofi || rofi -modi clipboard:~/.local/bin/cliphist-rofi-img -show clipboard -show-icons"; }
+    Mod+B { spawn-sh "flatpak run org.mozilla.firefox"; }
+    Mod+D { spawn-sh "flatpak run dev.vencord.Vesktop"; }
+    Mod+Escape { spawn "ghostty" "-e" "btm"; }
+
+    // moving window focus
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+K { focus-window-up; }
+    Mod+J { focus-window-down; }
+
+    Mod+Home { focus-column-first; }
+    Mod+Ctrl+End { move-column-to-last; }
+
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    // moving windows around
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+J { move-window-down; }
+
+    Mod+U { consume-or-expel-window-left; }
+    Mod+I { consume-or-expel-window-right; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+F11 { fullscreen-window; }
+
+    Mod+C { center-column; }
+    Mod+F { toggle-window-floating; }
+    Mod+W { toggle-column-tabbed-display; }
+    // Mod+Ctrl+C { center-visible-columns; }
+
+    // moving workspace focus
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+
+    Mod+Shift+J { focus-workspace-down; }
+    Mod+Shift+K { focus-workspace-up; }
+
+    // moving stuff to/between workspaces
+    Mod+Alt+1 { move-column-to-workspace 1; }
+    Mod+Alt+2 { move-column-to-workspace 2; }
+    Mod+Alt+3 { move-column-to-workspace 3; }
+    Mod+Alt+4 { move-column-to-workspace 4; }
+    Mod+Alt+5 { move-column-to-workspace 5; }
+    Mod+Alt+6 { move-column-to-workspace 6; }
+    Mod+Alt+7 { move-column-to-workspace 7; }
+    Mod+Alt+8 { move-column-to-workspace 8; }
+    Mod+Alt+9 { move-column-to-workspace 9; }
+    Mod+Alt+0 { move-column-to-workspace 10; }
+
+    Mod+Alt+J { move-column-to-workspace-down; }
+    Mod+Alt+K { move-column-to-workspace-up; }
+
+    // Print { screenshot; }
+    // Ctrl+Print { screenshot-screen; }
+    // Alt+Print { screenshot-window; }
+
+    // Mod+Shift+P { power-off-monitors; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "5%+"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "5%-"; }
+
+    XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPause allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+}
