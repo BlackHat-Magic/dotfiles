@@ -109,6 +109,11 @@ window-rule {
 }
 
 window-rule {
+	match app-id="ninjabrainbot-Main"
+	open-floating true
+}
+
+window-rule {
     match app-id="steam"
     open-floating true
 }
@@ -156,7 +161,9 @@ binds {
 
     Mod+U { consume-or-expel-window-left; }
     Mod+I { consume-or-expel-window-right; }
-
+    
+    Mod+M { spawn-sh "niri msg action set-column-width 10%; niri msg action center-column"; }
+    Mod+Shift+M { spawn-sh "niri msg action set-column-width 50%; niri msg action center-column"; }
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }

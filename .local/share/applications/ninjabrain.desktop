@@ -1,0 +1,10 @@
+
+[Desktop Entry]
+Type=Application
+Name=Ninjabrain Bot
+Comment=Find Minecraft Strongholds Quickly
+Exec=java -jar /home/blackhatmagic/.local/share/Ninjabrain-Bot-1.5.1.jar
+Icon=games-config
+Terminal=false
+Categories=Game;Utility;
+MimeType=inode/directory;
