@@ -36,7 +36,7 @@
                 "car": "",
                 "default": ["", "", ""]
             },
-            "on-click": "pavucontrol"
+            "on-click": "ghostty -e wiremix"
         },
 
         "battery": {
