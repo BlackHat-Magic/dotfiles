@@ -28,3 +28,20 @@ map -docstring "paste the clipboard" global user p "<a-!> xsel<ret>"
 
 # Shortcut to quickly exit the editor
 define-command -docstring "save and quit" x "write-all; quit"
+
+# LSP configuration
+eval %sh{kak-lsp}
+lsp-enable
+
+# LSP key mappings
+map global user l ':enter-user-mode lsp<ret>' -docstring 'LSP mode'
+map global goto d '<esc>:lsp-definition<ret>' -docstring 'LSP definition'
+map global goto r '<esc>:lsp-references<ret>' -docstring 'LSP references'
+map global goto y '<esc>:lsp-type-definition<ret>' -docstring 'LSP type definition'
+
+# Tree-sitter configuration
+eval %sh{kak-tree-sitter --kakoune}
+hook global WinSetOption filetype=(rust|python|javascript|typescript|c|cpp|go|html|css|json|yaml|toml|bash|sh|zsh) %{
+    remove-highlighter window/tree-sitter
+    tree-sitter-highlight-enable
+}
