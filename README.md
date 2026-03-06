@@ -3,8 +3,8 @@
 Requires the following arch packages:
 
 ```sh
-sudo pacman -S bottom brightnessctl cliphist flatpak ghostty hyprland mako nwg-look \
-    rofi rofi-calc superfile ttf-nerd-fonts ttf-nerd-fonts-common \
+sudo pacman -S bottom brightnessctl cliphist fd flatpak fzf ghostty hyprland mako nwg-look \
+    rofi rofi-calc superfile ttf-nerd-fonts ttf-nerd-fonts-common zoxide \
     ttf-nerd-fonts-mono waybar
 ```
 

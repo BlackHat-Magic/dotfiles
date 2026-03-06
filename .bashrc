@@ -33,6 +33,11 @@ alias btw='neofetch'
 alias htop='btm'
 alias top='btm'
 alias py='python'
+alias nvim='kak'
+alias cd='z'
+alias grep='rg'
+alias find='fd'
+alias fk='kak $(fzf)'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -63,3 +68,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+eval "$(zoxide init bash)"
