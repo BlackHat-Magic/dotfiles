@@ -20,6 +20,21 @@ Requires the following flatpak packages:
 flatpak install org.mozilla.firefox
 ```
 
+## Python Utilities
+
+This repo contains a bunch of small Python CLI utilities that perform simple tasks that I find useful.
+
+### Posterize
+
+A simple Python utility that posterizes a given image and applies any one of a number of dithering algorithms.
+
+```sh
+posterize <image_name> -o <output_name>		# if dotfiles are installed
+uv run posterize							# from the project root if `uv` is installed
+uvx --from
+```
+
+
 ## TODO
 
 - [ ] Icons that don't suck

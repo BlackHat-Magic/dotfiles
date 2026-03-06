@@ -1,0 +1,22 @@
+#!/bin/bash
+orig_pwd="$PWD"
+args=()
+output_next=
+for arg in "$@"; do
+    if [[ -n "$output_next" ]]; then
+        if [[ "$arg" != /* ]]; then
+            args+=("$orig_pwd/$arg")
+        else
+            args+=("$arg")
+        fi
+        output_next=
+    elif [[ "$arg" == -o || "$arg" == --output ]]; then
+        output_next=1
+        args+=("$arg")
+    elif [[ -f "$arg" ]]; then
+        args+=("$(realpath "$arg")")
+    else
+        args+=("$arg")
+    fi
+done
+cd /home/blackhatmagic/.dotfiles && uv run --package posterize posterize "${args[@]}"

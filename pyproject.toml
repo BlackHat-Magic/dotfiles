@@ -1,9 +1,10 @@
 [project]
 name = "dotfiles"
 version = "0.1.0"
-description = "Add your description here"
+description = "Simple configuration and utilities for Arch on Niri"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = [
-    "pillow>=12.1.1",
-]
+
+[tool.uv.workspace]
+members = ["python_utils/*"]
+
