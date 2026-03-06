@@ -29,9 +29,15 @@ This repo contains a bunch of small Python CLI utilities that perform simple tas
 A simple Python utility that posterizes a given image and applies any one of a number of dithering algorithms.
 
 ```sh
-posterize <image_name> -o <output_name>		# if dotfiles are installed
-uv run posterize							# from the project root if `uv` is installed
-uvx --from
+
+# if dotfles are stowed in home directory
+posterize <image_name> -o <output_namei>
+
+# from the project root if `uv` is installed
+uv run posterize
+
+# with `uvx` without installing at all
+uvx --from git+https://github.com/BlackHat-Magic/dotfiles posterize
 ```
 
 
