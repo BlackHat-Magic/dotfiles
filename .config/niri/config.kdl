@@ -122,11 +122,16 @@ window-rule {
     match app-id="virt-manager"
     open-floating true
 }
+window-rule {
+	match app-id="demo_mesh"
+	open-floating true
+}
 
 spawn-sh-at-startup "waybar -c ~/.config/waybar/config-niri"
 spawn-at-startup "mako"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
+spawn-at-startup "swaybg" "-i" "/home/blackhatmagic/Wallpapers/output.png"
 
 binds {
     Mod+Shift+Slash { spawn "ghostty -e less ~/.config/niri/cheetsheet.md"; }
