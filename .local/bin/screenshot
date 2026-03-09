@@ -1,0 +1,26 @@
+#!/bin/bash
+set -euo pipefail
+
+SAVE_DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$SAVE_DIR"
+
+TIMESTAMP=$(date +"%Y-%m-%d %H-%M-%S")
+FILENAME="$SAVE_DIR/Screenshot from $TIMESTAMP.png"
+
+case "${1:-region}" in
+	"region")
+		grim -g "$(slurp)" - | swappy -f - -o "$FILENAME"
+		;;
+	"screen")
+		grim - | swappy -f - -o "$FILENAME"
+		;;
+	"output")
+		grim -o "$(slurp -o -f '%o')" - | swappy -f - -o "$FILENAME"
+		;;
+	*)
+		echo "Usage: screenshot [region|screen|output]"
+		exit 1
+		;;
+esac
+
+notify-send "Screenshot saved" "$FILENAME" -i camera-photo

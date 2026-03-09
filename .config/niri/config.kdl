@@ -209,9 +209,9 @@ binds {
     Mod+Alt+J { move-column-to-workspace-down; }
     Mod+Alt+K { move-column-to-workspace-up; }
 
-    // Print { screenshot; }
-    // Ctrl+Print { screenshot-screen; }
-    // Alt+Print { screenshot-window; }
+    Print { spawn "~/.local/bin/screenshot" "region"; }
+    Ctrl+Print { spawn "~/.local/bin/screenshot" "screen"; }
+    Alt+Print { spawn "~/.local/bin/screenshot" "output"; }
 
     // Mod+Shift+P { power-off-monitors; }
 
