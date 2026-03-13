@@ -28,7 +28,7 @@ PS1='\[\e[38;5;8m\][ \[\e[0;38;5;12m\]\W\[\e[38;5;8m\] ] \[\e[0;38;5;7m\]$(__git
 
 alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
-export EDITOR=nvim
+export EDITOR=kak
 alias btw='neofetch'
 alias htop='btm'
 alias top='btm'
@@ -37,7 +37,18 @@ alias nvim='kak'
 alias cd='z'
 alias grep='rg'
 alias find='fd'
-alias fk='kak $(fzf)'
+fk() {
+  local file
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    file=$(git ls-files | fzf --preview 'bat --color=always {}' --preview-window=right:60%)
+  else
+    file=$(fd --type f --hidden --exclude node_modules --exclude __pycache__ --exclude .git --exclude .venv --exclude venv --exclude .env --exclude target --exclude dist --exclude build | fzf --preview 'bat --color=always {}' --preview-window=right:60%)
+  fi
+
+  if [[ -n "$file" ]]; then
+    kak "$file"
+  fi
+}
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
