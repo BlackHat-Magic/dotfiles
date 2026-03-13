@@ -143,6 +143,7 @@ binds {
     Mod+Grave { spawn-sh "killall rofi || rofi -show drun"; }
     Alt+Grave { spawn-sh "killall rofi || rofi -show calc -modi calc -no-show-match -no-sort"; }
     Mod+V { spawn-sh "killall rofi || rofi -modi clipboard:~/.local/bin/cliphist-rofi-img -show clipboard -show-icons"; }
+    Mod+Period { spawn-sh "killall rofi || ~/.local/bin/emoji-picker"; }
     Mod+B { spawn-sh "flatpak run org.mozilla.firefox"; }
     Mod+D { spawn-sh "flatpak run dev.vencord.Vesktop"; }
     Mod+Escape { spawn "ghostty" "-e" "btm"; }

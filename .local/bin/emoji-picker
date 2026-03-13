@@ -1,0 +1,10 @@
+#!/bin/bash
+
+emoji_file="$HOME/.config/rofi/emoji.txt"
+selected=$(cat "$emoji_file" | rofi -dmenu -i -p "Emoji:" -theme-str "listview { lines: 15; }")
+
+if [ -n "$selected" ]; then
+    emoji=$(echo "$selected" | awk '{print $1}')
+    echo "$emoji" | wl-copy
+    notify-send "Emoji copied" "$emoji"
+fi
