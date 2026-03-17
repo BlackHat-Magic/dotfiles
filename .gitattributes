@@ -1,0 +1,2 @@
+# Git filters for sensitive data
+.var/app/com.obsproject.Studio/config/obs-studio/plugin_config/obs-websocket/config.json filter=obs-websocket

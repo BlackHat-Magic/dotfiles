@@ -1,0 +1,8 @@
+{
+  "alerts_enabled": false,
+  "auth_required": true,
+  "first_load": false,
+  "server_enabled": false,
+  "server_password": "CHANGE_ME_OR_GENERATE_YOUR_OWN",
+  "server_port": 4455
+}

@@ -1,0 +1,38 @@
+#!/bin/bash
+# obs-websocket password filter for git
+# Usage:
+#   clean: stdin -> stdout (strip password for commit)
+#   smudge: stdin -> stdout (restore password from local file)
+
+MODE="$1"
+PLACEHOLDER="CHANGE_ME_OR_GENERATE_YOUR_OWN"
+LOCAL_PW_FILE=".git-local/obs-websocket-password.local"
+
+case "$MODE" in
+  clean)
+    # Read JSON from stdin, replace password with placeholder
+    # We use sed to handle the password line
+    sed 's/"server_password":\s*"[^"]*"/"server_password": "'"$PLACEHOLDER"'"/'
+    ;;
+  smudge)
+    # Check if we have a local password file
+    REAL_PASSWORD=""
+    if [[ -f "$LOCAL_PW_FILE" ]]; then
+      REAL_PASSWORD=$(cat "$LOCAL_PW_FILE")
+    fi
+
+    # Read JSON from stdin
+    CONTENT=$(cat)
+
+    # If we have a real password, use it; otherwise keep placeholder
+    if [[ -n "$REAL_PASSWORD" && "$REAL_PASSWORD" != "$PLACEHOLDER" ]]; then
+      echo "$CONTENT" | sed 's/"server_password":\s*"[^"]*"/"server_password": "'"$REAL_PASSWORD"'"/'
+    else
+      echo "$CONTENT"
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {clean|smudge}" >&2
+    exit 1
+    ;;
+esac
