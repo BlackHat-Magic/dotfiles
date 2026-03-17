@@ -6,6 +6,7 @@ environment {
     XCURSOR_SIZE "24"
     DISPLAY ":0"
     XDG_SESSION_TYPE "wayland"
+    GTK_THEME "catppuccin-mocha-mauve-standard+default"
 }
 
 input {
@@ -130,7 +131,7 @@ window-rule {
 spawn-sh-at-startup "waybar -c ~/.config/waybar/config-niri"
 spawn-at-startup "mako"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "swaybg" "-i" "/home/blackhatmagic/Wallpapers/output.png"
 
 binds {
