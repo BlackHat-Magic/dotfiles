@@ -1,6 +1,9 @@
 **/__pycache__/
+
 .config/opencode/
+
 .var/app/com.obsproject.Studio/config/obs-studio/logs/
 .var/app/com.obsproject.Studio/config/obs-studio/profiler_data/
 .var/app/com.obsproject.Studio/config/obs-studio/.sentinel/
 .var/app/com.obsproject.Studio/config/obs-studio/plugin_config/obs-browser/
+**/*.bak

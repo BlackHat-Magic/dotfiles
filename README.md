@@ -58,7 +58,6 @@ This repo also contains my configurations for OBS Studio. It expects these plugi
 | Stroke Glow Shadow		| `StrokeGlowShadow`			| `obs-stroke-glow-shadow` (AUR)			|
 | Transition Table			| `TransitionTable`				| `obs-transition-table` (AUR)				|
 | Wayland Hotkeys			| `WaylandHotkeys`				| `obs-wayland-hotkeys-git` (AUR)			|
-| WebSocket Server (Legacy)	| `WebSocket`					| `obs-websocket-bin` (AUR)					|
 | 3D Effect					| `_3DEffect`					| `obs-3d-effect` (AUR)						|
 | Waveform					| `waveform`					| N/A										|
 
