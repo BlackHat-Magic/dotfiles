@@ -51,9 +51,7 @@ This repo also contains my configurations for OBS Studio. It expects these plugi
 | Aitum Stream Suite		| `AitumStreamSuite`			| N/A										|
 | Move Transition			| `MoveTransition`				| `obs-move-transition` (AUR) (Out of date) |
 | Scale To Sound			| `ScaleToSound`				| `obs-scale-to-sound` (AUR)				|
-| Advanced Scene Switcher	| `SceneSwitcher`				| `obs-advanced-scene-switcher` (AUR)		|
 | Shaderfiler				| `Shaderfilter`				| `obs-shaderfilter-git` (AUR)				|
-| Source Clone				| `SourceClone`					| `obs-source-clone` (AUR)					|
 | Source Record				| `SourceRecord`				| `obs-source-record` (AUR)					|
 | Stroke Glow Shadow		| `StrokeGlowShadow`			| `obs-stroke-glow-shadow` (AUR)			|
 | Transition Table			| `TransitionTable`				| `obs-transition-table` (AUR)				|
