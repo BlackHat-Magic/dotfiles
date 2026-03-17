@@ -1,0 +1,177 @@
+[
+    {
+        "display_name": "phandasm_waveform",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "waveform",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "phandasm_waveform_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Transition Table",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "transition-table",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "Source Record",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "source-record",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "source_record_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Scale to Sound",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "scale-to-sound",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "scale_to_sound"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "obs-websocket-compat",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "obs-wayland-hotkeys",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "obs-stroke-glow-shadow",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "obs_stroke_filter",
+            "obs_glow_filter",
+            "obs_shadow_filter",
+            "obs_stroke_source",
+            "obs_glow_source",
+            "obs_shadow_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "obs-shaderfilter",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "shader_filter",
+            "shader_transition"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "obs-advanced-masks",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "advanced_masks_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Move Transition",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "move-transition",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "move_transition",
+            "move_transition_override_filter",
+            "move_source_filter",
+            "move_source_swap_filter",
+            "move_value_filter",
+            "move_audio_value_filter",
+            "audio_move_filter",
+            "move_action_filter",
+            "move_audio_action_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Aitum Stream Suite",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "aitum-stream-suite",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "component_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "aitum-multistream",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "3D Effect",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "3d-effect",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "3d_effect_filter"
+        ],
+        "version": ""
+    }
+]
