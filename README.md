@@ -48,7 +48,6 @@ This repo also contains my configurations for OBS Studio. It expects these plugi
 | :---						| :---							| :---										|
 | Advanced Masks			| `AdvancedMasks`				| `obs-advanced-masks` (AUR)				|
 | Aitum Multistream			| `AitumMultistream`			| `obs-aitum-multistream-bin` (AUR)			|
-| Aitum Stream Suite		| `AitumStreamSuite`			| N/A										|
 | Move Transition			| `MoveTransition`				| `obs-move-transition` (AUR) (Out of date) |
 | Scale To Sound			| `ScaleToSound`				| `obs-scale-to-sound` (AUR)				|
 | Shaderfiler				| `Shaderfilter`				| `obs-shaderfilter-git` (AUR)				|
