@@ -9,5 +9,7 @@
 .var/app/com.obsproject.Studio/config/obs-studio/plugin_config/obs-browser/
 **/*.bak
 
+service.json
+
 # Local obs-websocket password (used by git filter)
 .git-local/

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro Shader</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #181825;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="glCanvas"></canvas>
+
+  <script>
+    // ========== CONFIGURATION ==========
+    // Set your desired resolution here (match your OBS browser source settings)
+    const CANVAS_WIDTH = 2560;
+    const CANVAS_HEIGHT = 1440;
+    // Set to true to use the browser source dimensions instead of the above
+    const USE_BROWSER_DIMENSIONS = false;
+    // ====================================
+
+    const canvas = document.getElementById('glCanvas');
+    const gl = canvas.getContext('webgl');
+
+    if (!gl) {
+      console.error('WebGL not supported');
+      throw new Error('WebGL not supported');
+    }
+
+    // Vertex shader - simple fullscreen quad
+    const vertexShaderSource = `
+      attribute vec2 aPosition;
+      varying vec2 vUv;
+      void main() {
+        vUv = aPosition * 0.5 + 0.5;
+        gl_Position = vec4(aPosition, 0.0, 1.0);
+      }
+    `;
+
+    // Fragment shader - ported from ShaderToy with custom colors
+    const fragmentShaderSource = `
+      precision highp float;
+      
+      varying vec2 vUv;
+      uniform float iTime;
+      uniform vec2 iResolution;
+      
+      // Configuration
+      #define SPIN_ROTATION -2.0
+      #define SPIN_SPEED 7.0
+      #define OFFSET vec2(0.0)
+      // Custom Catppuccin colors
+      // #cba6f7 (lavender) -> rgb(203, 166, 247)
+      #define COLOUR_1 vec4(0.796, 0.651, 0.969, 1.0)
+      // #74c7ec (sapphire blue) -> rgb(116, 199, 236)
+      #define COLOUR_2 vec4(0.455, 0.780, 0.925, 1.0)
+      // #181825 (dark crust) -> rgb(24, 24, 37)
+      #define COLOUR_3 vec4(0.094, 0.094, 0.145, 1.0)
+      #define CONTRAST 3.5
+      #define LIGTHING 0.4
+      #define SPIN_AMOUNT 0.25
+      #define PIXEL_FILTER 10000.0
+      #define SPIN_EASE 1.0
+      #define PI 3.14159265359
+      #define IS_ROTATE false
+
+      vec4 effect(vec2 screenSize, vec2 screen_coords) {
+        float pixel_size = length(screenSize.xy) / PIXEL_FILTER;
+        vec2 uv = (floor(screen_coords.xy * (1.0 / pixel_size)) * pixel_size - 0.5 * screenSize.xy) / length(screenSize.xy) - OFFSET;
+        float uv_len = length(uv);
+        
+        float speed = (SPIN_ROTATION * SPIN_EASE * 0.2);
+        if (IS_ROTATE) {
+          speed = iTime * speed;
+        }
+        speed += 302.2;
+        float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE * 20.0 * (1.0 * SPIN_AMOUNT * uv_len + (1.0 - 1.0 * SPIN_AMOUNT));
+        vec2 mid = (screenSize.xy / length(screenSize.xy)) / 2.0;
+        uv = (vec2((uv_len * cos(new_pixel_angle) + mid.x), (uv_len * sin(new_pixel_angle) + mid.y)) - mid);
+        
+        uv *= 30.0;
+        speed = iTime * SPIN_SPEED;
+        vec2 uv2 = vec2(uv.x + uv.y);
+        
+        for (int i = 0; i < 5; i++) {
+          uv2 += sin(max(uv.x, uv.y)) + uv;
+          uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121), sin(uv2.x - 0.113 * speed));
+          uv -= 1.0 * cos(uv.x + uv.y) - 1.0 * sin(uv.x * 0.711 - uv.y);
+        }
+        
+        float contrast_mod = (0.25 * CONTRAST + 0.5 * SPIN_AMOUNT + 1.2);
+        float paint_res = min(2.0, max(0.0, length(uv) * 0.035 * contrast_mod));
+        float c1p = max(0.0, 1.0 - contrast_mod * abs(1.0 - paint_res));
+        float c2p = max(0.0, 1.0 - contrast_mod * abs(paint_res));
+        float c3p = 1.0 - min(1.0, c1p + c2p);
+        float light = (LIGTHING - 0.2) * max(c1p * 5.0 - 4.0, 0.0) + LIGTHING * max(c2p * 5.0 - 4.0, 0.0);
+        
+        return (0.3 / CONTRAST) * COLOUR_1 
+             + (1.0 - 0.3 / CONTRAST) * (COLOUR_1 * c1p + COLOUR_2 * c2p + vec4(c3p * COLOUR_3.rgb, c3p * COLOUR_1.a)) 
+             + light;
+      }
+
+      void main() {
+        vec2 fragCoord = vUv * iResolution;
+        gl_FragColor = effect(iResolution, fragCoord);
+      }
+    `;
+
+    // Compile shader
+    function compileShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    // Create program
+    function createProgram(gl, vertexShader, fragmentShader) {
+      const program = gl.createProgram();
+      gl.attachShader(program, vertexShader);
+      gl.attachShader(program, fragmentShader);
+      gl.linkProgram(program);
+      
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error('Program link error:', gl.getProgramInfoLog(program));
+        return null;
+      }
+      return program;
+    }
+
+    // Initialize shaders
+    const vertexShader = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    const program = createProgram(gl, vertexShader, fragmentShader);
+
+    // Get locations
+    const aPosition = gl.getAttribLocation(program, 'aPosition');
+    const iTimeLocation = gl.getUniformLocation(program, 'iTime');
+    const iResolutionLocation = gl.getUniformLocation(program, 'iResolution');
+
+    // Create fullscreen quad
+    const positions = new Float32Array([
+      -1, -1,
+       1, -1,
+      -1,  1,
+       1,  1
+    ]);
+
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+    // Store actual resolution for rendering
+    let renderWidth = CANVAS_WIDTH;
+    let renderHeight = CANVAS_HEIGHT;
+
+    // Resize handler
+    function resize() {
+      if (USE_BROWSER_DIMENSIONS) {
+        renderWidth = window.innerWidth;
+        renderHeight = window.innerHeight;
+      }
+      
+      // Set canvas to exact pixel dimensions (no DPR scaling)
+      canvas.width = renderWidth;
+      canvas.height = renderHeight;
+      gl.viewport(0, 0, renderWidth, renderHeight);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Animation loop
+    let startTime = null;
+
+    function render(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const time = (timestamp - startTime) / 1000;
+
+      gl.clearColor(0.035, 0.035, 0.057, 1.0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      gl.useProgram(program);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+      gl.enableVertexAttribArray(aPosition);
+      gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+      gl.uniform1f(iTimeLocation, time);
+      gl.uniform2f(iResolutionLocation, renderWidth, renderHeight);
+
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>

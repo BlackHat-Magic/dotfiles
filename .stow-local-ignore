@@ -8,5 +8,7 @@ python_utils/*
 uv.lock
 .venv/*
 
+obs/*
+
 README.md
 LICENSE.md

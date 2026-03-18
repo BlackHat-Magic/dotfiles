@@ -42,7 +42,11 @@ uvx --from git+https://github.com/BlackHat-Magic/dotfiles posterize
 
 ## OBS Studio
 
-This repo also contains my configurations for OBS Studio. It expects these plugins to be installed. `com.obsproject.Studio.Plugin.` is omitted from the start of the flatpak application IDs for brevity.
+This repo also contains my configurations for OBS Studio.
+
+### Plugins
+
+It expects these plugins to be installed. `com.obsproject.Studio.Plugin.` is omitted from the start of the flatpak application IDs for brevity.
 
 | **Plugin Name**			| **Flatpak Application ID**	| **Arch/AUR Package**						|
 | :---						| :---							| :---										|
@@ -65,3 +69,4 @@ This repo also contains my configurations for OBS Studio. It expects these plugi
 # Acknowledgements
 
 - [cliphist](https://github.com/sentriz/cliphist) (`contrib/cliphist-rofi-img` used for clipboard management)
+- OBS "Startin Soon," "Be Right Back," and "Ending Stream" screens use a shader based on [Base warp fBM cineshader(https://www.shadertoy.com/view/3sfczf) by TrinketMage on ShaderToy.

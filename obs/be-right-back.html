@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be Right Back</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 540px;
+    }
+    .main-title {
+      font-size: 240px;
+      font-weight: 700;
+      color: #cdd6f4;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+      letter-spacing: -2px;
+      margin-bottom: 80px;
+    }
+    .socials {
+		font-size: 48px;
+		color: #a6adc8;
+    }
+    .loading-container {
+      font-size: 72px;
+      color: #f5c2e7;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 1px;
+      margin-bottom: 60px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 4px;
+      height: 72px;
+      background-color: #74c7ec;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-title">Be Right Back...</div>
+    <div class="loading-container">
+      <span id="loading-text"></span><span class="cursor"></span>
+    </div>
+    <div class="socials">Twitch: BlackHat_Magic   |   bhm.gg/discord   |   YouTube: @BlackHatMagic</div>
+  </div>
+
+  <script>
+    const loadingTexts = [
+      "On a quick coffee break…",
+      "Refueling the stream…",
+      "Checking the interwebs…",
+      "Searching for the remote…",
+      "Realigning my chakras…",
+      "Calibrating the bot…",
+      "Consulting ChatGPT…",
+      "Downloading more RAM…",
+      "Rebooting the stream consciousness…",
+      "Buffering… my brain…",
+      "Applying patches… to reality…",
+      "Warming up the electron tubes…",
+      "Locating the snack stash…",
+      "Checking stream vitals…",
+      "Polishing the stream crystals…",
+      "Preparing the inter-dimensional gateway…",
+      "Flashing in Protean Hulk…",
+      "Aligning the stars…",
+      "Charging the flux capacitor…",
+      "Reading the tea leaves…",
+      "Divining the future…",
+      "Checking oxygen levels…",
+      "Loading personality…",
+      "Initializing dream…",
+      "Stream is recharging…",
+      "Preparing for reentry…",
+      "Checking the matrix…",
+      "Bootstrapping consciousness…",
+      "Loading inception…",
+      "Bikeshedding OBS config…",
+      "Calibrating quantum stream…",
+      "Preparing the quantum stream…",
+      "Establishing neural handshake…",
+      "Synchronizing with the stream…",
+      "Loading the stream matrix…",
+      "Just a moment, stretching my pixels…",
+      "Quick reality check…",
+      "Touching grass…",
+      "Rebooting humor module…",
+      "Caching stream essentials…",
+      "Garbage collecting stream thoughts…",
+      "Assembling the interwebs…",
+      "Converting coffee into code…",
+      "Updating syntax for reality…",
+      "Rewiring stream synapses…",
+      "Looking for a misplaced semicolon…",
+      "Greasin' the stream cogs…",
+      "Pre-heating OBS…",
+      "Channeling the stream Force…",
+      "Aligning stars for stream optimal response…",
+      "So say we all…",
+      "Loading next stream idea…",
+      "Just a moment, I'm in the zone…",
+      "Preparing to dazzle you with my brilliance…",
+      "Just a tick, polishing wit…",
+      "Stretching the neural pathways…",
+      "Loading stream consciousness…",
+      "Buffering… stream consciousness…",
+      "Warming up the stream electron tubes…",
+      "Locating the Higgs boson…",
+      "Proving the Reimann Hypothesis…",
+      "Summoning spirits…",
+      "Preparing the inter-dimensional stream gateway…",
+      "Charging the flux capacitor…",
+      "Desparking enemy planeswalker…",
+      "Consulting Thassa's oracle…",
+      "Divining the future…",
+      "Reading the tea leaves…",
+      "Checking the stars…",
+      "Polishing the stream crystals…",
+      "Warming up the bitstream…",
+      "Establishing stream neural handshake…",
+      "Loading the matrix…",
+      "Preparing the quantum stream…",
+      "Bootstrapping consciousness…",
+      "Initializing dream…",
+      "Loading stream inception…",
+      "Stream is warming up…",
+      "Preparing for stream liftoff…",
+      "Checking stream oxygen levels…",
+      "Preparing the stream pod…",
+      "Loading personality…",
+      "Calibrating stream vibes…",
+      "Quick bathroom break…",
+      "Checking notifications…",
+      "Stretching my legs…",
+      "Realigning the universe…",
+      "Downloading sanity…",
+      "Updating my drivers…",
+      "Calibrating my sensors…",
+      "Checking the manual…",
+      "Reading the documentation…",
+      "StackOverflowing…",
+      "Googling the answer…",
+      "Asking the oracle…"
+    ];
+
+    const loadingText = document.getElementById('loading-text');
+    let currentIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 80;
+    const deletingSpeed = 40;
+    const pauseTime = 2500;
+
+    function typeWriter() {
+      const currentText = loadingTexts[currentIndex];
+
+      if (!isDeleting) {
+        if (charIndex < currentText.length) {
+          loadingText.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+          setTimeout(typeWriter, typingSpeed + Math.random() * 20);
+        } else {
+          setTimeout(() => {
+            isDeleting = true;
+            typeWriter();
+          }, pauseTime);
+        }
+      } else {
+        if (charIndex > 0) {
+          loadingText.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(typeWriter, deletingSpeed);
+        } else {
+          isDeleting = false;
+          currentIndex = Math.floor(Math.random() * loadingTexts.length);
+          setTimeout(typeWriter, 200);
+        }
+      }
+    }
+
+    typeWriter();
+  </script>
+</body>
+</html>

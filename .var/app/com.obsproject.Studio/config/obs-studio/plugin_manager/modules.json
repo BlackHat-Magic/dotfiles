@@ -145,9 +145,7 @@
         "module_name": "aitum-stream-suite",
         "outputs": [],
         "services": [],
-        "sources": [
-            "component_source"
-        ],
+        "sources": [],
         "version": ""
     },
     {
@@ -171,6 +169,20 @@
         "services": [],
         "sources": [
             "3d_effect_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Vertical Canvas",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "vertical-canvas",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "vertical_audio_wrapper_source",
+            "vertical_multi_canvas_source"
         ],
         "version": ""
     }

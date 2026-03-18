@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ending Stream</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 540px;
+    }
+    .main-title {
+      font-size: 240px;
+      font-weight: 700;
+      color: #cdd6f4;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+      letter-spacing: -2px;
+      margin-bottom: 80px;
+    }
+    .socials {
+      font-size: 48px;
+      color: #a6adc8;
+    }
+    .loading-container {
+      font-size: 72px;
+      color: #f5c2e7;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 1px;
+      margin-bottom: 60px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 4px;
+      height: 72px;
+      background-color: #74c7ec;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-title">Ending Stream...</div>
+    <div class="loading-container">
+      <span id="loading-text"></span><span class="cursor"></span>
+    </div>
+    <div class="socials">Twitch: BlackHat_Magic   |   bhm.gg/discord   |   YouTube: @BlackHatMagic</div>
+  </div>
+
+  <script>
+    const loadingTexts = [
+      "Saving stream consciousness…",
+      "Backing up memories…",
+      "Archiving the stream…",
+      "Compressing stream data…",
+      "Finalizing stream protocol…",
+      "Closing the planar bridge…",
+      "Disconnecting from the stream matrix…",
+      "Releasing the stream spirits…",
+      "Collapsing the quantum stream…",
+      "De-initializing stream consciousness…",
+      "Downloading the stream soul…",
+      "Compressing the dream…",
+      "Archiving stream inception…",
+      "Stream is powering down…",
+      "Preparing for stream reentry…",
+      "Checking stream vitals one last time…",
+      "Polishing the stream crystals for next time…",
+      "Closing the inter-dimensional gateway…",
+      "Banishing the stream demons…",
+      "Aligning the stream stars for next time…",
+      "Discharging the flux capacitor…",
+      "Reading the final tea leaves…",
+      "Divining the stream afterlife…",
+      "Checking the stream afterlife stars…",
+      "Polishing the final crystals…",
+      "Cooling down the bitstream…",
+      "Terminating stream protocol…",
+      "Disestablishing neural handshake…",
+      "Desynchronizing from the stream…",
+      "Unloading the stream matrix…",
+      "Releasing the quantum stream…",
+      "Shutting down stream consciousness…",
+      "Closing the stream dream…",
+      "Unloading stream inception…",
+      "Stream is cooling down…",
+      "Preparing for stream hibernation…",
+      "Checking stream shutdown sequence…",
+      "Draining the stream pod…",
+      "Unloading stream personality…",
+      "Calibrating offline vibes…",
+      "Just a moment, compressing stream memories…",
+      "Final reality check…",
+      "Defragmenting final memories…",
+      "Shutting down humor module…",
+      "Purging stream cache…",
+      "Final garbage collection…",
+      "Disassembling the interwebs…",
+      "Converting code back to coffee…",
+      "Restoring syntax for reality…",
+      "Rewiring final synapses…",
+      "Finding all semicolons…",
+      "Parking the stream cogs…",
+      "Cooling down the servers…",
+      "Disengaging the stream Force…",
+      "Misaligning stars for optimal rest…",
+      "All good things must come to an end…",
+      "Thanks for the stream ideas…",
+      "Just a tick, saving stream wit…",
+      "Stretching final neural pathways…",
+      "Unloading stream consciousness…",
+      "Buffering… final goodbye…",
+      "Cooling down electron tubes…",
+      "Storing the Higgs boson…",
+      "Disconnecting quantum entanglement…",
+      "Sending stream spirits home…",
+      "Closing the gateway…",
+      "Draining the flux capacitor…",
+      "Misaligning the leylines…",
+      "Closing the oracle…",
+      "Ending divination…",
+      "Burning the tea leaves…",
+      "Checking the final stars…",
+      "Polishing final crystals…",
+      "Freezing the bitstream…",
+      "Terminating protocol…",
+      "Breaking neural handshake…",
+      "Final synchronization complete…",
+      "Saving the stream matrix…",
+      "Preparing to fade to black…",
+      "Goodnight stream…",
+      "Until next time…",
+      "Stream complete…",
+      "Final credits rolling…",
+      "Stream shutdown sequence initiated…",
+      "Don't forget to like and subscribe…",
+      "Thanks for watching…",
+      "See you next stream…",
+      "Stream consciousness saved…",
+      "Backing up to cloud…",
+      "Syncing to the afterlife…",
+      "Transferring to dream state…",
+      "Loading stream memories…",
+      "Archiving for eternity…",
+      "Compressing for posterity…",
+      "Final save complete…",
+      "All systems nominal… shutdown in progress…",
+      "Stream ending in 3… 2… 1…",
+      "Thank you for the view…",
+      "Stream has ended…",
+      "Goodbye…"
+    ];
+
+    const loadingText = document.getElementById('loading-text');
+    let currentIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 80;
+    const deletingSpeed = 40;
+    const pauseTime = 2500;
+
+    function typeWriter() {
+      const currentText = loadingTexts[currentIndex];
+
+      if (!isDeleting) {
+        if (charIndex < currentText.length) {
+          loadingText.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+          setTimeout(typeWriter, typingSpeed + Math.random() * 20);
+        } else {
+          setTimeout(() => {
+            isDeleting = true;
+            typeWriter();
+          }, pauseTime);
+        }
+      } else {
+        if (charIndex > 0) {
+          loadingText.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(typeWriter, deletingSpeed);
+        } else {
+          isDeleting = false;
+          currentIndex = Math.floor(Math.random() * loadingTexts.length);
+          setTimeout(typeWriter, 200);
+        }
+      }
+    }
+
+    typeWriter();
+  </script>
+</body>
+</html>
