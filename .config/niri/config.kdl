@@ -173,9 +173,9 @@ binds {
 
     Mod+U { consume-or-expel-window-left; }
     Mod+I { consume-or-expel-window-right; }
-    
-    Mod+M { spawn-sh "niri msg action set-column-width 10%; niri msg action center-column"; }
-    Mod+Shift+M { spawn-sh "niri msg action set-column-width 50%; niri msg action center-column"; }
+
+    Mod+M { spawn-sh "niri msg action set-column-width 10%; sleep 0.1; niri msg action center-column"; }
+    Mod+Shift+M { spawn-sh "niri msg action set-column-width 50%; sleep 0.1; niri msg action center-column"; }
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
