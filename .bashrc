@@ -37,6 +37,7 @@ alias nvim='kak'
 alias cd='z'
 alias grep='rg'
 alias find='fd'
+alias sudo='doas'
 fk() {
   local file
   if git rev-parse --git-dir > /dev/null 2>&1; then

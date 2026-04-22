@@ -52,11 +52,12 @@ This config uses [Niri](https://github.com/niri-wm/niri) with the following util
 ## Terminal Utilities
 
 This config uses [ghostty](https://github.com/ghostty-org/ghostty) with the following utilities:
-- [bottom](https://github.com/clementtsang/bottom) as a file manager.
+- [bottom](https://github.com/clementtsang/bottom) as a system monitor.
 - [fd](https://github.com/sharkdp/fd) as a `find` replacement.
 - [fzf](https://github.com/junegunn/fzf) as a fuzzy finder.
 - [kakoune](https://github.com/mawww/kakoune) with [kak-tree-sitter](https://sr.ht/~hadronized/kak-tree-sitter/) and [kakoune-lsp](https://github.com/kakoune-lsp/kakoune-lsp) as a text editor.
 - [OpenCode](https://github.com/anomalyco/opencode) for agentic coding.
+- [Superfile](https://github.com/yorukot/superfile) as a terminal file manager.
 - [ripgrep](https://github.com/burntsushi/ripgrep) as a `grep` replacement.
 - [tldr](https://github.com/zellij-org/zellij) for more readable manpages.
 - [wiremix](https://github.com/tsowell/wiremix) for volume control.
@@ -111,7 +112,7 @@ It expects these plugins to be installed. `com.obsproject.Studio.Plugin.` is omi
 
 # Acknowledgements
 
-- OBS "Starting Soon," "Be Right Back," and "Ending Stream" screens use a shader based on [Base warp fBM cineshader(https://www.shadertoy.com/view/3sfczf) by TrinketMage on ShaderToy.
+- OBS "Starting Soon," "Be Right Back," and "Ending Stream" screens use a shader based on [Base warp fBM cineshader](https://www.shadertoy.com/view/3sfczf) by TrinketMage on ShaderToy.
 
 ## Arch/AUR Packages:
 

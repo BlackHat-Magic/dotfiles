@@ -153,6 +153,7 @@ binds {
     Mod+B { spawn-sh "flatpak run org.mozilla.firefox"; }
     Mod+D { spawn-sh "flatpak run dev.vencord.Vesktop"; }
     Mod+Escape { spawn "ghostty" "-e" "btm"; }
+    Mod+Shift+B { spawn-sh "killall waybar; waybar -c ~/.config/waybar/config-niri &"; }
 
     // moving window focus
     Mod+H { focus-column-left; }
