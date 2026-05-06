@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+source /usr/share/nvm/init-nvm.sh
+
 # Function to get the current Git branch and status
 __git_info() {
   local git_dir=$(git rev-parse --git-dir 2>/dev/null)
