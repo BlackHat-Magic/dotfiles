@@ -32,14 +32,15 @@ alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
 export EDITOR=kak
 alias btw='neofetch'
-alias htop='btm'
-alias top='btm'
-alias py='python'
-alias nvim='kak'
+alias cat='bat'
 alias cd='z'
-alias grep='rg'
+alias diff='difft'
 alias find='fd'
+alias grep='rg'
+alias htop='btm'
+alias py='python'
 alias sudo='doas'
+alias top='btm'
 fk() {
   local file
   if git rev-parse --git-dir > /dev/null 2>&1; then

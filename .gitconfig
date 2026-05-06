@@ -1,0 +1,21 @@
+[pull]
+	rebase = true
+[user]
+	email = personal@lukeh.us
+	name = BlackHat-Magic
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[include]
+	path = ~/.config/delta/catppuccin.gitconfig
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	external = difft
+# difftastic aliases(?)
+[alias]
+	dft = -c diff.external=difft diff
+	dshow = -c diff.external=difft show --ext-diff
+	dlog = -c diff.external=difft log -p --ext-diff
+
