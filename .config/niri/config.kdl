@@ -103,6 +103,10 @@ window-rule {
     opacity 0.98
 }
 
+window-rule {
+	match app-id="com.palladia.*"
+	open-floating true
+}
 
 window-rule {
     match app-id="org.prismlauncher.PrismLauncher"
