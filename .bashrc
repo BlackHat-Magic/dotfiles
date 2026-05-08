@@ -28,6 +28,14 @@ __git_info() {
 # Set the PS1 variable
 PS1='\[\e[38;5;8m\][ \[\e[0;38;5;12m\]\W\[\e[38;5;8m\] ] \[\e[0;38;5;7m\]$(__git_info)\[\e[0;38;5;6m\]\t\[\e[0m\] \[\e[38;5;4m\]\$\[\e[0m\] '
 
+# fzf Catppuccin Mocha theme
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
+
 alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
 export EDITOR=kak
