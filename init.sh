@@ -1,11 +1,13 @@
 #!/bin/bash
 
 if [ "$EUID" -ne 0 ]; then
-    exec doas "$0" "$@" || exec sudo "$0" "$@" || { printf "Could not escalate privileges.\n"; exit 1; }
+	exec doas "$0" "$@" || exec sudo "$0" "$@" || { printf "Could not escalate privileges.\n"; exit 1; }
 fi
-
+command -v pacman >/dev/null 2>&1 || { printf "No pacman found.\n" >&2; exit 1; }
 pacman -Syy --noconfirm archlinux-keyring || { printf "Failed to sync keyring.\n" >&2; exit 1; }
 pacman -Syu --noconfirm || { printf "System update failed.\n" >&2; exit 1; }
+command -v useradd >/dev/null 2>&1 || pacman -S --noconfirm shadow || \
+	{ printf "Failed to install shadow.\n" >&2; exit 1};
 command -v which >/dev/null 2>&1 || pacman -S --noconfirm which || { printf "Failed to install which.\n" >&2; exit 1; }
 
 while true; do
@@ -59,6 +61,17 @@ if ! command -v just >/dev/null 2>&1; then
         read -p "Install just? [Y/n] " yn
         case "${yn:-Y}" in
             [Yy]* ) pacman -S --noconfirm just || { printf "Failed to install just.\n" >&2; exit 1; }; break;;
+            [Nn]* ) break;;
+            * ) printf "Please answer yes or no.\n";;
+        esac
+    done
+fi
+
+if ! command -v git >/dev/null 2&1; then
+    while true; do
+        read -p "Install git? [Y/n] " yn
+        case "${yn:-Y}" in
+            [Yy]* ) pacman -S --noconfirm just || { printf "Failed to install git.\n" >&2; exit 1; }; break;;
             [Nn]* ) break;;
             * ) printf "Please answer yes or no.\n";;
         esac
