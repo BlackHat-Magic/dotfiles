@@ -13,9 +13,5 @@
 	conflictStyle = zdiff3
 [diff]
 	external = difft
-# difftastic aliases(?)
-[alias]
-	dft = -c diff.external=difft diff
-	dshow = -c diff.external=difft show --ext-diff
-	dlog = -c diff.external=difft log -p --ext-diff
-
+[delta]
+	dark = true
