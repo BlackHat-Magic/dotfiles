@@ -78,14 +78,15 @@ A simple Python utility that posterizes a given image and applies any one of a n
 
 ```sh
 
-# if dotfles are stowed in home directory
-posterize <image_name> -o <output_namei>
+# from the project root
+uv run posterize [-o OUTPUT] image		# to run without installing
+uv tool install python_utils/posterize	# install to current user's PATH
+uv tool uninstall posterize				# to uninstall
 
-# from the project root if `uv` is installed
-uv run posterize
-
-# with `uvx` without installing at all
-uvx --from git+https://github.com/BlackHat-Magic/dotfiles posterize
+# over the internet (without cloning repository)
+uvx --from git+https://github.com/BlackHat-Magic/dotfiles posterize [-o OUTPUT] image		# run w/o install
+uv tool install git+github.com/BlackHat-magic/dotfiles --directory python_utils/posterize	# install to user's PATH
+uv tool uninstall posterize																	# uninstall
 ```
 
 ## OBS Studio
