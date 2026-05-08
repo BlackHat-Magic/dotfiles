@@ -32,7 +32,7 @@ alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
 export EDITOR=kak
 alias btw='neofetch'
-alias cat='bat'
+alias cat='bat --theme dark'
 alias cd='z'
 alias diff='difft'
 alias find='fd'
