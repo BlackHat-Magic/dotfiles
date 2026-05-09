@@ -1,5 +1,6 @@
 .git/*
 .gitignore
+.gitattributes
 
 ^/__pycache__/
 .python-version
@@ -7,6 +8,7 @@ pyproject.toml
 python_utils/*
 uv.lock
 .venv/*
+init.sh
 
 obs/*
 
