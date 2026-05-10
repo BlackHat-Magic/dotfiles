@@ -29,7 +29,6 @@ wl-clipboard
 tui_pacman := """
 bat
 bottom
-delta
 difftastic
 docker
 docker-buildx
@@ -38,13 +37,12 @@ fd
 fzf
 ghostty-terminfo
 git
+git-delta
 kakoune
 kakoune-lsp
-nvm
 ripgrep
 superfile
 tldr
-waybar
 whois
 zellij
 zoxide
@@ -58,6 +56,13 @@ catppuccin-gtk-theme-mocha
 
 tui_paru := """
 kak-tree-sitter
+"""
+
+curl_installers := """
+nvm
+uv
+sdkman
+rustup
 """
 
 root_cmd := if `[ "$(id -u)" = "0" ] && echo "true" || echo ""` == "true" { "" } else { `if command -v doas >/dev/null 2>&1; then echo "doas"; elif command -v sudo >/dev/null 2>&1; then echo "sudo"; fi` }
@@ -132,4 +137,17 @@ install:
     		printf "%s\n" "$$selected" | xargs -r {{ root_cmd }} paru -S --needed --noconfirm || \
     		{ printf "Failed to install some AUR packages.\n"; exit 1; }; \
     	fi; \
+    fi
+
+    @selected="$(just _choose "{{ curl_installers }}")"; \
+    if [ -n "$$selected" ]; then \
+    	printf "%s\n" "$$selected" | while IFS= read -r tool; do \
+    		case "$$tool" in \
+    			nvm) curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash || printf "Failed to install nvm.\n" ;; \
+    			uv) curl -LsSf https://astral.sh/uv/install.sh | sh || printf "Failed to install uv.\n" ;; \
+    			sdkman) curl -s "https://get.sdkman.io" | bash || printf "Failed to install sdkman.\n" ;; \
+    			rustup) curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || printf "Failed to install rustup.\n" ;; \
+    			*) printf "Unknown installer: %s\n" "$$tool" ;; \
+    		esac; \
+    	done; \
     fi
