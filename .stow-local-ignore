@@ -9,6 +9,7 @@ python_utils/*
 uv.lock
 .venv/*
 init.sh
+justfile
 
 obs/*
 

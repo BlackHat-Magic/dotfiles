@@ -8,7 +8,7 @@ pacman -Syy --noconfirm archlinux-keyring || { printf "Failed to sync keyring.\n
 pacman -Syu --noconfirm || { printf "System update failed.\n" >&2; exit 1; }
 command -v useradd >/dev/null 2>&1 || pacman -S --noconfirm shadow || \
 	{ printf "Failed to install shadow.\n" >&2; exit 1};
-command -v which >/dev/null 2>&1 || pacman -S --noconfirm which || { printf "Failed to install which.\n" >&2; exit 1; }
+pacman -S --noconfirm which sed || { printf "Failed to install which and/or sed.\n" >&2; exit 1; }
 
 while true; do
     read -p "Enter new user username: " username
@@ -67,13 +67,3 @@ if ! command -v just >/dev/null 2>&1; then
     done
 fi
 
-if ! command -v git >/dev/null 2&1; then
-    while true; do
-        read -p "Install git? [Y/n] " yn
-        case "${yn:-Y}" in
-            [Yy]* ) pacman -S --noconfirm just || { printf "Failed to install git.\n" >&2; exit 1; }; break;;
-            [Nn]* ) break;;
-            * ) printf "Please answer yes or no.\n";;
-        esac
-    done
-fi
