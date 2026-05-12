@@ -39,13 +39,14 @@ export FZF_DEFAULT_OPTS=" \
 alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
 export EDITOR=kak
-alias btw='neofetch'
+alias btw='fastfetch'
 alias cat='bat --theme dark'
 alias cd='z'
 alias diff='difft'
 alias find='fd'
 alias grep='rg'
 alias htop='btm'
+alias neofetch='fastfetch'
 alias py='python'
 alias sudo='doas'
 alias top='btm'
