@@ -5,8 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source /usr/share/nvm/init-nvm.sh
-
 # Function to get the current Git branch and status
 __git_info() {
   local git_dir=$(git rev-parse --git-dir 2>/dev/null)
@@ -80,10 +78,6 @@ unset __conda_setup
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
