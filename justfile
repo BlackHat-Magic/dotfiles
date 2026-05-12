@@ -90,12 +90,24 @@ install:
     	{{ root_cmd }} pacman -S --needed --noconfirm coreutils fzf wget || \
     	printf "Unable to install coreutils, fzf, grep, and/or wget.\n"
 
-    cat /etc/wgetrc >/dev/null 2>&1 || printf "hsts-file = /var/cache/wget-hsts\n" | {{ root_cmd }} tee /etc/wgetrc >/dev/null 2>&1 || \
-    	printf "Unable to init /etc/wgetrc (non-fatal); continuing...\n"
+    if [ -f /etc/wgetrc ]; then \
+    	if grep -q "^hsts-file" /etc/wgetrc 2>/dev/null; then \
+    		{{ root_cmd }} sed -i "s|^hsts-file.*|hsts-file = /var/cache/wget-hsts|" /etc/wgetrc 2>/dev/null || \
+    			printf "Unable to edit hsts-file in /etc/wgetrc (non-fatal); continuing...\n"; \
+    	else \
+    		printf "\nhsts-file = /var/cache/wget-hsts\n" | {{ root_cmd }} tee -a /etc/wgetrc >/dev/null 2>&1 || \
+    			printf "Unable to append hsts-file to /etc/wgetrc (non-fatal); continuing...\n"; \
+    	fi \
+    else \
+    	printf "hsts-file = /var/cache/wget-hsts\n" | {{ root_cmd }} tee /etc/wgetrc >/dev/null 2>&1 || \
+    		printf "Unable to create /etc/wgetrc (non-fatal); continuing...\n"; \
+    fi
 
-    grep "/var/cache/wget-hsts" /etc/wgetrc >/dev/null 2>&1 || \
-    	{{ root_cmd }} sed -i "s/hsts-file.*/hsts-file = \/var\/cache\/wget-hsts/" /etc/wgetrc 2>/dev/null || \
-    	printf "Unable to edit /etc/wgetrc (non-fatal); continuing...\n"
+    if [ ! -f /var/cache/wget-hsts ]; then \
+    	{{ root_cmd }} touch /var/cache/wget-hsts && \
+    	{{ root_cmd }} chmod 666 /var/cache/wget-hsts || \
+    		printf "Unable to create /var/cache/wget-hsts (non-fatal); continuing...\n"; \
+    fi
 
     rm -f ~/.wgetrc ~/.wget-hsts 2>/dev/null
 

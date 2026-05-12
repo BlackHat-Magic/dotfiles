@@ -6,9 +6,8 @@ fi
 command -v pacman >/dev/null 2>&1 || { printf "No pacman found.\n" >&2; exit 1; }
 pacman -Syy --noconfirm archlinux-keyring || { printf "Failed to sync keyring.\n" >&2; exit 1; }
 pacman -Syu --noconfirm || { printf "System update failed.\n" >&2; exit 1; }
-command -v useradd >/dev/null 2>&1 || pacman -S --noconfirm shadow || \
-	{ printf "Failed to install shadow.\n" >&2; exit 1};
-pacman -S --noconfirm which sed || { printf "Failed to install which and/or sed.\n" >&2; exit 1; }
+command -v useradd >/dev/null 2>&1 || pacman -S --noconfirm sed shadow which || \
+	{ printf "Failed to install sed, shadow, and which.\n" >&2; exit 1};
 
 while true; do
     read -p "Enter new user username: " username
