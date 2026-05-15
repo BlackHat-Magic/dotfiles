@@ -33,10 +33,9 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
 --color=selected-bg:#45475A \
 --color=border:#6C7086,label:#CDD6F4"
-
-alias ls='ls --color=auto'
 export PATH=$PATH:~/.local/bin
 export EDITOR=kak
+
 alias btw='fastfetch'
 alias cat='bat --theme dark'
 alias cd='z'
@@ -45,6 +44,7 @@ alias find='fd'
 alias grep='rg'
 alias htop='btm'
 alias neofetch='fastfetch'
+alias ls='ls --color=auto'
 alias py='python'
 alias sudo='doas'
 alias top='btm'
@@ -87,5 +87,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+eval "$(mise activate bash)"
 eval "$(zoxide init bash)"
 
