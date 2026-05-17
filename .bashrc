@@ -34,47 +34,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475A \
 --color=border:#6C7086,label:#CDD6F4"
 export PATH=$PATH:~/.local/bin
-export EDITOR=kak
-
-alias btw='fastfetch'
-alias cat='bat --theme dark'
-alias cd='z'
-alias diff='difft'
-alias find='fd'
-alias grep='rg'
-alias htop='btm'
-alias neofetch='fastfetch'
-alias ls='ls --color=auto'
-alias py='python'
-alias sudo='doas'
-alias top='btm'
-fk() {
-  local file
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    file=$(git ls-files | fzf --preview 'bat --color=always {}' --preview-window=right:60%)
-  else
-    file=$(fd --type f --hidden --exclude node_modules --exclude __pycache__ --exclude .git --exclude .venv --exclude venv --exclude .env --exclude target --exclude dist --exclude build | fzf --preview 'bat --color=always {}' --preview-window=right:60%)
-  fi
-
-  if [[ -n "$file" ]]; then
-    kak "$file"
-  fi
-}
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-        . "/usr/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+command -v kak >/dev/null 2>&1 && export EDITOR=kak
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
@@ -87,6 +47,29 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-eval "$(mise activate bash)"
-eval "$(zoxide init bash)"
+command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
+
+command -v fastfetch >/dev/null 2>&1 && alias btw='fastfetch' && alias neofetch='fastfetch'
+command -v bat >/dev/null 2>&1 && alias cat='bat --theme dark'
+command -v zoxide >/dev/null 2>&1 && alias cd='z'
+command -v difft >/dev/null 2>&1 && alias diff='difft'
+command -v fd >/dev/null 2>&1 && alias find='fd'
+command -v rg >/dev/null 2>&1 && alias grep='rg'
+command -v btm >/dev/null 2>&1 && alias htop='btm' && alias top='btm'
+alias ls='ls --color=auto'
+command -v python >/dev/null 2>&1 && alias py='python'
+command -v doas >/dev/null 2>&1 && alias sudo='doas'
+fk() {
+  local file
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    file=$(git ls-files | fzf --preview 'bat --color=always {}' --preview-window=right:60%)
+  else
+    file=$(fd --type f --hidden --exclude node_modules --exclude __pycache__ --exclude .git --exclude .venv --exclude venv --exclude .env --exclude target --exclude dist --exclude build | fzf --preview 'bat --color=always {}' --preview-window=right:60%)
+  fi
+
+  if [[ -n "$file" ]]; then
+    kak "$file"
+  fi
+}
 
