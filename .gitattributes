@@ -1,2 +1,8 @@
 # Git filters for sensitive data
+
+# OBS WebSocket Password
 .var/app/com.obsproject.Studio/config/obs-studio/plugin_config/obs-websocket/config.json filter=obs-websocket
+
+# OpenCode MCP API Keys
+.config/opencode/opencode.json filter=opencode-api-keys
+.config/opencode/opencode.jsonc filter=opencode-api-keys

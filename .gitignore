@@ -1,6 +1,8 @@
 **/__pycache__/
 
-.config/opencode/
+.env
+
+.config/opencode/node_modules
 
 # OBS Flatpak runtime/cache files
 .var/app/com.obsproject.Studio/cache/

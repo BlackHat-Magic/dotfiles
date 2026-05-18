@@ -2,6 +2,9 @@
 .gitignore
 .gitattributes
 
+.env
+.env.example
+
 ^/__pycache__/
 .python-version
 pyproject.toml

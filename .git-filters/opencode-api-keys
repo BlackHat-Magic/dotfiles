@@ -1,5 +1,5 @@
 #!/bin/bash
-# obs-websocket password filter for git
+# OpenCode API Key filter for git
 # Usage:
 #   clean: stdin -> stdout (strip password for commit)
 #   smudge: stdin -> stdout (restore password from local file)
@@ -13,7 +13,7 @@ case "$MODE" in
   clean)
     # Read JSON from stdin, replace password with placeholder
     # We use sed to handle the password line
-    sed 's/"server_password":\s*"[^"]*"/"server_password": "'"$PLACEHOLDER"'"/'
+    sed 's/"CONTEXT7_API_KEY":\s*"[^"]*"/"CONTEXT7_API_KEY": "'"$PLACEHOLDER"'"/'
     ;;
   smudge)
 
@@ -21,8 +21,8 @@ case "$MODE" in
     CONTENT=$(cat)
 
     # If we have a real password, use it; otherwise keep placeholder
-    if [[ -n "$OBS_WEBSOCKET_PASSWORD" && "$OBS_WEBSOCKET_PASSWORD" != "$PLACEHOLDER" ]]; then
-      echo "$CONTENT" | sed 's/"server_password":\s*"[^"]*"/"server_password": "'"$OBS_WEBSOCKET_PASSWORD"'"/'
+    if [[ -n "$CONTEXT7_API_KEY" && "$CONTEXT7_API_KEY" != "$PLACEHOLDER" ]]; then
+      echo "$CONTENT" | sed 's/"CONTEXT7_API_KEY":\s*"[^"]*"/"CONTEXT7_API_KEY": "'"$CONTEXT7_API_KEY"'"/'
     else
       echo "$CONTENT"
     fi
