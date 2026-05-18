@@ -14,6 +14,12 @@ Requires the following AUR packages:
 paru -S catppuccin-cursors-mocha catppuccin-gtk-theme-mocha
 ```
 
+The following mise utilities:
+
+```sh
+mise use -g node@latest uv@latest opencode@latest bun@latest hadolint@latest cargo:bat@latest cargo:fd-find@latest cargo:ripgrep@latest cargo:git-delta@latest cargo:bottom@latest cargo:difftastic@latest cargo:zellij@latest zoxide@latest fzf@latest
+```
+
 Requires the following flatpak packages:
 
 ```sh
@@ -119,15 +125,3 @@ It expects these plugins to be installed. `com.obsproject.Studio.Plugin.` is omi
 
 - OBS "Starting Soon," "Be Right Back," and "Ending Stream" screens use a shader based on [Base warp fBM cineshader](https://www.shadertoy.com/view/3sfczf) by TrinketMage on ShaderToy.
 
-## Arch/AUR Packages:
-
-- blueman 2.4.6-2
-- brightnessctl 0.5.1-3
-- candy-icons-git r1363.b0a85a7-1
-- cloc 2.08-1
-- dnsmasq 2.92-1
-- git 2.53.0-1
-- github-cli 2.89.0-1
-- less 1:692-1
-- nix 2.34.2-1
-- ollama 0.18.3-1
