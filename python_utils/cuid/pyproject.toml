@@ -1,0 +1,10 @@
+[project]
+name = "cuid"
+version = "0.1.0"
+description = "CUID and UUID CLI utility"
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+cuid = "main:cli_entry_point"
+

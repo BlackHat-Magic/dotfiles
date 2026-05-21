@@ -133,23 +133,11 @@ dependencies = [
     { name = "pillow" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "ruff" },
-    { name = "ty" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "numba", specifier = ">=0.58.0" },
     { name = "numpy", specifier = ">=1.24.0" },
     { name = "pillow", specifier = ">=10.0.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ruff", specifier = ">=0.15.13" },
-    { name = "ty", specifier = ">=0.0.37" },
 ]
 
 [[package]]
