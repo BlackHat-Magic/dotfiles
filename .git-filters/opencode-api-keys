@@ -11,21 +11,26 @@ PLACEHOLDER="CHANGEME"
 
 case "$MODE" in
   clean)
-    # Read JSON from stdin, replace password with placeholder
-    # We use sed to handle the password line
-    sed 's/"CONTEXT7_API_KEY":\s*"[^"]*"/"CONTEXT7_API_KEY": "'"$PLACEHOLDER"'"/'
+    # Read JSON from stdin, replace API keys with placeholder
+    sed -e 's/"CONTEXT7_API_KEY":\s*"[^"]*"/"CONTEXT7_API_KEY": "'"$PLACEHOLDER"'"/' \
+        -e 's/"x-api-key":\s*"[^"]*"/"x-api-key": "'"$PLACEHOLDER"'"/'
     ;;
   smudge)
 
     # Read JSON from stdin
     CONTENT=$(cat)
 
-    # If we have a real password, use it; otherwise keep placeholder
+    # Restore CONTEXT7_API_KEY if available
     if [[ -n "$CONTEXT7_API_KEY" && "$CONTEXT7_API_KEY" != "$PLACEHOLDER" ]]; then
-      echo "$CONTENT" | sed 's/"CONTEXT7_API_KEY":\s*"[^"]*"/"CONTEXT7_API_KEY": "'"$CONTEXT7_API_KEY"'"/'
-    else
-      echo "$CONTENT"
+      CONTENT=$(echo "$CONTENT" | sed 's/"CONTEXT7_API_KEY":\s*"[^"]*"/"CONTEXT7_API_KEY": "'"$CONTEXT7_API_KEY"'"/')
     fi
+
+    # Restore x-api-key (Exa) if available
+    if [[ -n "$EXA_API_KEY" && "$EXA_API_KEY" != "$PLACEHOLDER" ]]; then
+      CONTENT=$(echo "$CONTENT" | sed 's/"x-api-key":\s*"[^"]*"/"x-api-key": "'"$EXA_API_KEY"'"/')
+    fi
+
+    echo "$CONTENT"
     ;;
   *)
     echo "Usage: $0 {clean|smudge}" >&2

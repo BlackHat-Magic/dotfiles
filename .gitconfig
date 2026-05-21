@@ -15,3 +15,9 @@
 	external = difft
 [delta]
 	dark = true
+[filter "opencode-api-keys"]
+	clean = .git-filters/opencode-api-keys clean
+	smudge = .git-filters/opencode-api-keys smudge
+[filter "obs-websocket"]
+	clean = .git-filters/obs-websocket-filter clean
+	smudge = .git-filters/obs-websocket-filter smudge
