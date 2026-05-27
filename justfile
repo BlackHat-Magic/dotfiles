@@ -74,7 +74,8 @@ install:
 		rustup toolchain install stable || \
 		{ printf "Unable to install cargo.\n"; exit 1; }
 
-	@command -v cc >/dev/null 2>&1 || {{ root_cmd }} pacman -S gcc || \
+	@command -v cc >/dev/null 2>&1 && command -v ld >/dev/null 2>&1 || \
+		{{ root_cmd }} pacman -S --needed gcc binutils || \
 		{ printf "Unable to install gcc.\n"; exit 1; }
 
 	@command -v mise >/dev/null 2>&1 || {{ root_cmd }} pacman -S mise || \
