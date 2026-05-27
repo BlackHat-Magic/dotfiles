@@ -70,6 +70,13 @@ install:
     	printf "Must be root or have doas or sudo installed.\n"; exit 1; \
     fi
 
+	@command -v cargo >/dev/null 2>&1 || {{ root_cmd }} pacman -S rustup && \
+		rustup toolchain install stable || \
+		{ printf "Unable to install cargo.\n"; exit 1; }
+
+	@command -v cc >/dev/null 2>&1 || {{ root_cmd }} pacman -S gcc || \
+		{ printf "Unable to install gcc.\n"; exit 1; }
+
     @command -v mise >/dev/null 2>&1 || {{ root_cmd }} pacman -S mise || \
     	{ printf "Unable to install mise.\n"; exit 1; }
     @mise install || { printf "Unable to install mise tools.\n"; exit 1; }

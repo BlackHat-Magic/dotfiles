@@ -34,6 +34,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475A \
 --color=border:#6C7086,label:#CDD6F4"
 export PATH=$PATH:~/.local/bin
+export TMPDIR=$HOME/.local/tmp
 command -v kak >/dev/null 2>&1 && export EDITOR=kak
 
 # opencode
