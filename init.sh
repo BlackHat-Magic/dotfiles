@@ -46,7 +46,7 @@ if command -v sudo >/dev/null 2>&1; then
         read -p "Replace sudo with doas? [Y/n] " yn
         case "${yn:-Y}" in
             [Yy]* )
-                pacman -Rns --noconfirm sudo || { printf "Failed to remove sudo.\n" >&2; exit 1; }
+                pacman -Rns --noconfirm sudo
                 pacman -S --noconfirm doas || { printf "Failed to install doas.\n" >&2; exit 1; }
                 printf "permit :wheel\n" > /etc/doas.conf || { printf "Failed to write /etc/doas.conf.\n" >&2; exit 1; }
                 break;;
