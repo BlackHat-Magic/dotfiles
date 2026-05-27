@@ -13,7 +13,7 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 reflector --latest 20 \
 	--sort rate \
 	--protocol https \
-	--country United States \
+	--country "United States" \
 	--save /etc/pacman.d/mirrorlist
 
 while true; do
