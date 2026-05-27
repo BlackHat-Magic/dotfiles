@@ -27,25 +27,17 @@ wl-clipboard
 """
 
 tui_pacman := """
-bat
-bottom
-difftastic
 docker
 docker-buildx
 docker-compose
-fd
-fzf
 ghostty-terminfo
 git
-git-delta
 kakoune
 kakoune-lsp
-ripgrep
+mise
 superfile
 tldr
 whois
-zellij
-zoxide
 """
 
 gui_paru := """
@@ -143,4 +135,6 @@ install:
     		{ printf "Failed to install some AUR packages.\n"; exit 1; }; \
     	fi; \
     fi
+
+    @command -v mise >/dev/null 2>&1 && mise install
 

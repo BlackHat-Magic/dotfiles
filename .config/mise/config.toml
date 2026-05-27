@@ -1,10 +1,13 @@
 [tools]
+bun = "latest"
+fzf = "latest"
+hadolint = "latest"
 java = "26"
 node = "26"
-uv = "latest"
 opencode = "latest"
-bun = "latest"
-hadolint = "latest"
+uv = "latest"
+zig = "latest"
+zoxide = "latest"
 
 "cargo:bat" = "latest"
 "cargo:fd-find" = "latest"
@@ -13,10 +16,6 @@ hadolint = "latest"
 "cargo:bottom" = "latest"
 "cargo:difftastic" = "latest"
 "cargo:zellij" = "latest"
-
-# Native mise plugins
-"zoxide" = "latest"
-"fzf" = "latest"
 
 # Via GitHub releases
 # "github:plenaryapp/superfile" = "latest"
