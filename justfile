@@ -70,21 +70,28 @@ install:
     	printf "Must be root or have doas or sudo installed.\n"; exit 1; \
     fi
 
-    command -v curl >/dev/null 2>&1 && command -v fzf >/dev/null 2>&1 && command -v grep >/dev/null 2>&1 && \
-    	command -v tee >/dev/null 2>&1 && command -v wget >/dev/null 2>&1 || \
-    	{{ root_cmd }} pacman -S --needed --noconfirm coreutils fzf wget || \
-    	printf "Unable to install coreutils, fzf, grep, and/or wget.\n"
+    @command -v mise >/dev/null 2>&1 || {{ root_cmd }} pacman -S mise || \
+    	{ printf "Unable to install mise.\n"; exit 1; }
+    @mise install || { printf "Unable to install mise tools.\n"; exit 1; }
+
+    command -v curl >/dev/null 2>&1 && command -v tee >/dev/null 2>&1 \
+    	&& command -v wget >/dev/null 2>&1 || \
+    	{{ root_cmd }} pacman -S --needed --noconfirm coreutils wget || \
+    	{ printf "Unable to install coreutils and/or wget.\n"; exit 1; }
 
     if [ -f /etc/wgetrc ]; then \
-    	if grep -q "^hsts-file" /etc/wgetrc 2>/dev/null; then \
-    		{{ root_cmd }} sed -i "s|^hsts-file.*|hsts-file = /var/cache/wget-hsts|" /etc/wgetrc 2>/dev/null || \
+    	if rg -q "^hsts-file" /etc/wgetrc 2>/dev/null; then \
+    		{{ root_cmd }} sed -i "s|^hsts-file.*|hsts-file = /var/cache/wget-hsts|" \
+    			/etc/wgetrc 2>/dev/null || \
     			printf "Unable to edit hsts-file in /etc/wgetrc (non-fatal); continuing...\n"; \
     	else \
-    		printf "\nhsts-file = /var/cache/wget-hsts\n" | {{ root_cmd }} tee -a /etc/wgetrc >/dev/null 2>&1 || \
+    		printf "\nhsts-file = /var/cache/wget-hsts\n" | \
+    			{{ root_cmd }} tee -a /etc/wgetrc >/dev/null 2>&1 || \
     			printf "Unable to append hsts-file to /etc/wgetrc (non-fatal); continuing...\n"; \
     	fi \
     else \
-    	printf "hsts-file = /var/cache/wget-hsts\n" | {{ root_cmd }} tee /etc/wgetrc >/dev/null 2>&1 || \
+    	printf "hsts-file = /var/cache/wget-hsts\n" | \
+    		{{ root_cmd }} tee /etc/wgetrc >/dev/null 2>&1 || \
     		printf "Unable to create /etc/wgetrc (non-fatal); continuing...\n"; \
     fi
 

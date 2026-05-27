@@ -6,7 +6,7 @@ fi
 command -v pacman >/dev/null 2>&1 || { printf "No pacman found.\n" >&2; exit 1; }
 pacman -Syy --noconfirm archlinux-keyring || { printf "Failed to sync keyring.\n" >&2; exit 1; }
 pacman -Syu --noconfirm || { printf "System update failed.\n" >&2; exit 1; }
-pacman -S --noconfirm sed shadow which reflector || \
+pacman -S --noconfirm --needed sed shadow which reflector || \
 	{ printf "Failed to install sed, shadow, and which.\n" >&2; exit 1; }
 
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
