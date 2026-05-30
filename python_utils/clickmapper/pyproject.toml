@@ -1,0 +1,11 @@
+[project]
+name = "clickmapper"
+version = "0.1.0"
+description = "Map a position in one range to noisy keypresses in another range"
+requires-python = ">=3.14"
+dependencies = [
+    "evdev>=1.9.3",
+]
+
+[project.scripts]
+clickmapper = "main:cli_entry_point"
