@@ -4,7 +4,7 @@ import json
 import sys
 from pathlib import Path
 from typing import List, Tuple, Optional
-from multiprocessing import Pool, cpu_count
+from multiprocessing import Pool, cpu_count, get_context
 
 import numpy as np
 from PIL import Image
@@ -140,9 +140,9 @@ def floyd_steinberg_core(
 
     for y in range(height):
         for x in range(width):
-            old_r = image_float[y, x, 0]
-            old_g = image_float[y, x, 1]
-            old_b = image_float[y, x, 2]
+            old_r = max(0.0, min(255.0, image_float[y, x, 0]))
+            old_g = max(0.0, min(255.0, image_float[y, x, 1]))
+            old_b = max(0.0, min(255.0, image_float[y, x, 2]))
 
             pixel_lab = np.empty(3, dtype=np.float64)
             r = srgb_to_linear_fast(old_r / 255.0)
@@ -204,9 +204,9 @@ def atkinson_core(
 
     for y in range(height):
         for x in range(width):
-            old_r = image_float[y, x, 0]
-            old_g = image_float[y, x, 1]
-            old_b = image_float[y, x, 2]
+            old_r = max(0.0, min(255.0, image_float[y, x, 0]))
+            old_g = max(0.0, min(255.0, image_float[y, x, 1]))
+            old_b = max(0.0, min(255.0, image_float[y, x, 2]))
 
             pixel_lab = np.empty(3, dtype=np.float64)
             r = srgb_to_linear_fast(old_r / 255.0)
@@ -280,9 +280,9 @@ def jarvis_core(
 
     for y in range(height):
         for x in range(width):
-            old_r = image_float[y, x, 0]
-            old_g = image_float[y, x, 1]
-            old_b = image_float[y, x, 2]
+            old_r = max(0.0, min(255.0, image_float[y, x, 0]))
+            old_g = max(0.0, min(255.0, image_float[y, x, 1]))
+            old_b = max(0.0, min(255.0, image_float[y, x, 2]))
 
             pixel_lab = np.empty(3, dtype=np.float64)
             r = srgb_to_linear_fast(old_r / 255.0)
@@ -339,9 +339,9 @@ def stucki_core(
 
     for y in range(height):
         for x in range(width):
-            old_r = image_float[y, x, 0]
-            old_g = image_float[y, x, 1]
-            old_b = image_float[y, x, 2]
+            old_r = max(0.0, min(255.0, image_float[y, x, 0]))
+            old_g = max(0.0, min(255.0, image_float[y, x, 1]))
+            old_b = max(0.0, min(255.0, image_float[y, x, 2]))
 
             pixel_lab = np.empty(3, dtype=np.float64)
             r = srgb_to_linear_fast(old_r / 255.0)
@@ -1431,7 +1431,7 @@ def posterize_image(
                     else (tile, palette_lab, palette_rgb, y_start)
                 )
 
-            with Pool(n_workers) as pool:
+            with get_context("spawn").Pool(n_workers) as pool:
                 if "bayer" in dither_method:
                     results = pool.map(process_tile_bayer, tiles)
                 else:
