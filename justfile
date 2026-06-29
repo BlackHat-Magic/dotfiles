@@ -74,8 +74,9 @@ install:
 		rustup toolchain install stable || \
 		{ printf "Unable to install cargo.\n"; exit 1; }
 
-	@command -v cc >/dev/null 2>&1 && command -v ld >/dev/null 2>&1 || \
-		{{ root_cmd }} pacman -S --needed gcc binutils || \
+	@command -v cc >/dev/null 2>&1 && command -v ld >/dev/null 2>&1 && \
+		command -v make >/dev/null 2>&1 || \
+		{{ root_cmd }} pacman -S --needed gcc binutils make || \
 		{ printf "Unable to install gcc.\n"; exit 1; }
 
 	@command -v mise >/dev/null 2>&1 || {{ root_cmd }} pacman -S mise || \
@@ -128,6 +129,7 @@ install:
 		read -r yn; \
 		case "$${yn:-Y}" in \
 			[Yy]*) \
+				{{ root_cmd }} pacman -S --needed pkgconfg fakeroot debugedit && \
 				git clone https://aur.archlinux.org/paru.git /tmp/paru && \
 				(cd /tmp/paru && makepkg -si --noconfirm) && \
 				rm -rf /tmp/paru || \

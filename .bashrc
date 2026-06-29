@@ -54,7 +54,7 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
 command -v fastfetch >/dev/null 2>&1 && alias btw='fastfetch' && alias neofetch='fastfetch'
 command -v bat >/dev/null 2>&1 && alias cat='bat --theme dark'
 command -v zoxide >/dev/null 2>&1 && alias cd='z'
-command -v difft >/dev/null 2>&1 && alias diff='difft'
+# command -v difft >/dev/null 2>&1 && alias diff='difft'
 command -v fd >/dev/null 2>&1 && alias find='fd'
 command -v rg >/dev/null 2>&1 && alias grep='rg'
 command -v btm >/dev/null 2>&1 && alias htop='btm' && alias top='btm'

@@ -29,6 +29,10 @@ map -docstring "paste the clipboard" global user p "<a-!> xsel<ret>"
 # Shortcut to quickly exit the editor
 define-command -docstring "save and quit" x "write-all; quit"
 
+hook global WinSetOption filetype=python %{
+    set-option window indentwidth 0
+}
+
 # LSP configuration
 eval %sh{kak-lsp}
 lsp-enable
