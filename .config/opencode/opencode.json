@@ -1,5 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "skill": {
+      "brainstorming": "allow",
+      "test-driven-development": "deny",
+      "writing-plans": "allow"
+    }
+  },
   "mcp": {
     "context7": {
       "type": "remote",

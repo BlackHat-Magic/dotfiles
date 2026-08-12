@@ -18,3 +18,23 @@ service.json
 
 # Local obs-websocket password (used by git filter)
 .git-local/
+
+# Machine-local desktop state
+.config/gtk-3.0/bookmarks
+.config/gtk-4.0/assets
+.config/gtk-4.0/gtk.css
+.config/gtk-4.0/gtk-dark.css
+.local/share/applications/mimeinfo.cache
+.local/share/Ninjabrain-Bot-*.jar
+.local/share/applications/ninjabrain.desktop
+
+# OBS generated and machine-local state
+.var/app/com.obsproject.Studio/.ld.so/
+.var/app/com.obsproject.Studio/config/QtProject.conf
+.var/app/com.obsproject.Studio/config/user-dirs.dirs
+.var/app/com.obsproject.Studio/config/obs-studio/global.ini
+.var/app/com.obsproject.Studio/config/obs-studio/user.ini
+.var/app/com.obsproject.Studio/config/obs-studio/plugin_manager/modules.json
+.var/app/com.obsproject.Studio/config/obs-studio/plugin_config/aitum-multistream/
+.var/app/com.obsproject.Studio/config/obs-studio/plugin_config/vertical-canvas/
+.var/app/com.obsproject.Studio/config/obs-studio/plugin_config/rtmp-services/
