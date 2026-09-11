@@ -20,6 +20,7 @@
             "all-outputs": true,
             "warp-on-scroll": false,
             "format": "{icon}",
+            "tooltip": true,
             "format-icons": {
                 "default": "",
                 "active": "",
@@ -29,27 +30,36 @@
 
         "clock": {
             "format": "{:%a %b %d %I:%M %p}",
-            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+            }
         },
 
         "pulseaudio": {
             "scroll-step": 5,
             "format": "{icon} {volume}%",
-            "format-bluetooth": "{icon} {volume}% ",
-            "format-bluetooth-muted": "  {icon}",
-            "format-muted": " ",
-            "format-source": "{volume}%",
+            "format-bluetooth": "{icon} {volume}% ",
+            "format-bluetooth-muted": " {icon} ",
+            "format-muted": "",
+            "format-source": "",
             "format-source-muted": "",
+            "tooltip-format": "{desc}\nOutput: {volume}%\nScroll: change volume\nMiddle click: toggle microphone\nRight click: toggle output mute",
             "format-icons": {
-                "headphone": "",
-                "hands-free": "",
-                "headset": "",
+                "speaker": "",
+                "headphone": "",
+                "hands-free": "󰂑",
+                "headset": "󰂑",
                 "phone": "",
-                "portable": "",
+                "portable": "",
                 "car": "",
-                "default": ["", "", ""]
+                "default": ["", ""]
             },
-            "on-click": "pavucontrol"
+            "on-click": "ghostty -e wiremix",
+            "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+            "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         },
 
         "battery": {
@@ -59,10 +69,11 @@
                 "critical": 15
             },
             "format": "{icon} {capacity}%",
-            "format-charging": " {capacity}%",
-            "format-plugged": " {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
             "format-alt": "{icon} {time}",
-            "format-icons": ["", "", "", "", ""]
+            "format-icons": ["", "", "", "", ""],
+            "tooltip-format": "{capacity}%\n{timeTo}\nHealth: {health}%"
         },
 
         "upower": {
@@ -74,12 +85,14 @@
 
         "cpu": {
             "format": " {usage}%",
-            "tooltip": true
+            "tooltip-format": "{usage}% CPU usage\nClick: open system monitor",
+            "on-click": "ghostty -e btm"
         },
 
         "memory": {
-            "format": " {}%",
-            "tooltip-format": "{used:0.1f}G / {total:0.1f}G used"
+            "format": "󰍛 {}%",
+            "tooltip-format": "{used:0.1f}G / {total:0.1f}G used\nClick: open system monitor",
+            "on-click": "ghostty -e btm"
         }
     },
     {
@@ -103,6 +116,7 @@
             "all-outputs": true,
             "warp-on-scroll": false,
             "format": "{icon}",
+            "tooltip": true,
             "format-icons": {
                 "default": "",
                 "active": "",
@@ -112,27 +126,36 @@
 
         "clock": {
             "format": "{:%a %b %d %I:%M %p}",
-            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+            }
         },
 
         "pulseaudio": {
             "scroll-step": 5,
             "format": "{icon} {volume}%",
-            "format-bluetooth": "{icon} {volume}% ",
-            "format-bluetooth-muted": "  {icon}",
-            "format-muted": " ",
-            "format-source": "{volume}%",
+            "format-bluetooth": "{icon} {volume}% ",
+            "format-bluetooth-muted": " {icon} ",
+            "format-muted": "",
+            "format-source": "",
             "format-source-muted": "",
+            "tooltip-format": "{desc}\nOutput: {volume}%\nScroll: change volume\nMiddle click: toggle microphone\nRight click: toggle output mute",
             "format-icons": {
-                "headphone": "",
-                "hands-free": "",
-                "headset": "",
+                "speaker": "",
+                "headphone": "",
+                "hands-free": "󰂑",
+                "headset": "󰂑",
                 "phone": "",
-                "portable": "",
+                "portable": "",
                 "car": "",
-                "default": ["", "", ""]
+                "default": ["", ""]
             },
-            "on-click": "pavucontrol"
+            "on-click": "ghostty -e wiremix",
+            "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+            "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         },
 
         "battery": {
@@ -142,10 +165,11 @@
                 "critical": 15
             },
             "format": "{icon} {capacity}%",
-            "format-charging": " {capacity}%",
-            "format-plugged": " {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
             "format-alt": "{icon} {time}",
-            "format-icons": ["", "", "", "", ""]
+            "format-icons": ["", "", "", "", ""],
+            "tooltip-format": "{capacity}%\n{timeTo}\nHealth: {health}%"
         },
 
         "upower": {
@@ -157,12 +181,14 @@
 
         "cpu": {
             "format": " {usage}%",
-            "tooltip": true
+            "tooltip-format": "{usage}% CPU usage\nClick: open system monitor",
+            "on-click": "ghostty -e btm"
         },
 
         "memory": {
             "format": " {}%",
-            "tooltip-format": "{used:0.1f}G / {total:0.1f}G used"
+            "tooltip-format": "{used:0.1f}G / {total:0.1f}G used\nClick: open system monitor",
+            "on-click": "ghostty -e btm"
         }
     }
 ]

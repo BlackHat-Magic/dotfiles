@@ -1,0 +1,49 @@
+#!/bin/bash
+set -euo pipefail
+
+# Run waybar for niri, confining the external monitor's bar to the centered
+# 16:9 region of the screen when the monitor is wider than 16:9.
+#
+# Waybar margins are static, so compute the needed margin from the output's
+# current logical size and generate the config in the cache dir for this
+# launch. Falls back to the static config if the output can't be found.
+
+OUTPUT="${WAYBAR_OUTPUT:-DP-3}"
+CONFIG="$HOME/.config/waybar/config-niri"
+STYLE="$HOME/.config/waybar/style.css"
+GENERATED="${XDG_CACHE_HOME:-$HOME/.cache}/waybar-niri/config.json"
+mkdir -p "$(dirname "$GENERATED")"
+
+# Logical size of $OUTPUT, e.g. "5120x1440"; empty if niri doesn't report it.
+size="$(niri msg outputs | awk -v o="$OUTPUT" '
+    /^Output / {
+        name = $0
+        sub(/^.*\(/, "", name)
+        sub(/\).*$/, "", name)
+        found = (name == o)
+    }
+    found && /Logical size:/ { print $3; exit }
+')"
+
+if [[ -z "$size" ]]; then
+    echo "waybar-niri: output $OUTPUT not found, using static config" >&2
+    exec waybar -c "$CONFIG" -s "$STYLE"
+fi
+
+width="${size%x*}"
+height="${size#*x}"
+
+# Margin to center a 16:9 region; 0 if the output is not wider than 16:9.
+if (( width * 9 > height * 16 )); then
+    margin=$(( (width - height * 16 / 9) / 2 ))
+else
+    margin=0
+fi
+
+jq --arg o "$OUTPUT" --argjson m "$margin" '
+    map(if .output == $o then
+            .["margin-left"] = $m | .["margin-right"] = $m
+        else . end)
+' "$CONFIG" > "$GENERATED"
+
+exec waybar -c "$GENERATED" -s "$STYLE"

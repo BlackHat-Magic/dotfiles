@@ -1,5 +1,5 @@
 * {
-    font-family: "Sans", "Symbols Nerd Font Mono";
+    font-family: "Symbols Nerd Font Mono", "Sans";
     font-size: 14px;
     font-weight: bold;
     border: none;
@@ -26,10 +26,14 @@ tooltip {
     background: #1e1e2e;
     border: 2px solid #313244;
     border-radius: 5px;
+    padding: 8px 10px;
 }
 
 tooltip label {
     color: #cdd6f4;
+    font-family: "Sans", "Noto Sans";
+    font-size: 13px;
+    font-weight: normal;
 }
 
 #workspaces button {

@@ -26,7 +26,7 @@ input {
     }
 }
 
-output "DP-2" {
+output "DP-3" {
     mode "5120x1440"
     position x=0 y=0
     scale 1
@@ -137,7 +137,7 @@ window-rule {
 	open-floating true
 }
 
-spawn-sh-at-startup "waybar -c ~/.config/waybar/config-niri"
+spawn-sh-at-startup "~/.local/bin/waybar-niri"
 spawn-at-startup "mako"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
@@ -157,7 +157,7 @@ binds {
     Mod+B { spawn-sh "flatpak run org.mozilla.firefox"; }
     Mod+D { spawn-sh "flatpak run dev.vencord.Vesktop"; }
     Mod+Escape { spawn "ghostty" "-e" "btm"; }
-    Mod+Shift+B { spawn-sh "killall waybar; waybar -c ~/.config/waybar/config-niri &"; }
+    Mod+Shift+B { spawn-sh "killall waybar; ~/.local/bin/waybar-niri &"; }
 
     // moving window focus
     Mod+H { focus-column-left; }
@@ -221,7 +221,7 @@ binds {
     Mod+Alt+J { move-column-to-workspace-down; }
     Mod+Alt+K { move-column-to-workspace-up; }
 
-    Print { spawn "~/.local/bin/screenshot" "region"; }
+    Mod+Shift+S { spawn "~/.local/bin/screenshot" "region"; }
     Ctrl+Print { spawn "~/.local/bin/screenshot" "screen"; }
     Alt+Print { spawn "~/.local/bin/screenshot" "output"; }
 
