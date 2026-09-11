@@ -5,6 +5,7 @@
 .env
 
 .config/opencode/node_modules
+.config/rofi/emoji-source/
 
 # OBS Flatpak runtime/cache files
 .var/app/com.obsproject.Studio/cache/
