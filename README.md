@@ -72,7 +72,14 @@ This config uses [ghostty](https://github.com/ghostty-org/ghostty) with the foll
 - [tldr](https://github.com/zellij-org/zellij) for more readable manpages.
 - [wiremix](https://github.com/tsowell/wiremix) for volume control.
 - [zellij](https://github.com/zellij-org/zellij) as a terminal multiplexer.
-- [zoxide](https://github.com/ajeetdsouza/zoxide) as a `cd` replacement.
+ - [zoxide](https://github.com/ajeetdsouza/zoxide) as a `cd` replacement.
+
+The Rofi emoji picker uses the generated `.config/rofi/emoji.txt` list. Refresh
+it from the pinned Unicode Emoji 17.0 and CLDR 48.2 sources with:
+
+```sh
+python .config/rofi/generate-emoji-list.py --cache-dir .config/rofi/emoji-source
+```
 
 ## Python Utilities
 
@@ -124,4 +131,3 @@ It expects these plugins to be installed. `com.obsproject.Studio.Plugin.` is omi
 # Acknowledgements
 
 - OBS "Starting Soon," "Be Right Back," and "Ending Stream" screens use a shader based on [Base warp fBM cineshader](https://www.shadertoy.com/view/3sfczf) by TrinketMage on ShaderToy.
-
