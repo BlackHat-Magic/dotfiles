@@ -1,0 +1,26 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultThinkingLevel": "high",
+  "theme": "dark",
+  "editorPaddingX": 0,
+  "transport": "auto",
+  "collapseChangelog": true,
+  "quietStartup": true,
+  "enableInstallTelemetry": false,
+  "tuiMode": "fullscreen",
+  "fullscreenExitOutput": "transcript",
+  "packages": [
+    "npm:@narumitw/pi-btw",
+    "npm:pi-subagents",
+    "npm:pi-exa"
+  ],
+  "hideThinkingBlock": false,
+  "modelThinkingLevels": {
+    "openai-codex/gpt-5.6-luna": "high",
+    "opencode/gpt-5.6-luna": "high",
+    "opencode-go/gpt-5.6-luna": "high"
+  },
+  "enabledModels": []
+}
