@@ -3,8 +3,8 @@
 Requires the following arch packages:
 
 ```sh
-sudo pacman -S bottom brightnessctl cliphist fd flatpak fzf ghostty grim mako nwg-look \
-    rofi rofi-calc slurp superfile swappy ttf-nerd-fonts ttf-nerd-fonts-common zoxide \
+sudo pacman -S brightnessctl cliphist fd flatpak fzf ghostty grim mako nwg-look \
+    rofi rofi-calc slurp swappy ttf-nerd-fonts ttf-nerd-fonts-common zoxide \
     ttf-nerd-fonts-mono waybar
 ```
 
@@ -17,7 +17,7 @@ paru -S catppuccin-cursors-mocha catppuccin-gtk-theme-mocha
 The following mise utilities:
 
 ```sh
-mise use -g node@latest uv@latest opencode@latest bun@latest hadolint@latest cargo:bat@latest cargo:fd-find@latest cargo:ripgrep@latest cargo:git-delta@latest cargo:bottom@latest cargo:difftastic@latest cargo:zellij@latest zoxide@latest fzf@latest
+mise use -g node@latest uv@latest opencode@latest bun@latest hadolint@latest cargo:bat@latest cargo:fd-find@latest cargo:ripgrep@latest cargo:git-delta@latest cargo:difftastic@latest cargo:zellij@latest zoxide@latest fzf@latest
 ```
 
 Requires the following flatpak packages:
@@ -59,7 +59,6 @@ This config uses [Niri](https://github.com/niri-wm/niri) with the following util
 
 This config uses [ghostty](https://github.com/ghostty-org/ghostty) with the following utilities:
 - bat
-- [bottom](https://github.com/clementtsang/bottom) as a system monitor.
 - delta
 - difftatic
 - [fd](https://github.com/sharkdp/fd) as a `find` replacement.
@@ -67,7 +66,6 @@ This config uses [ghostty](https://github.com/ghostty-org/ghostty) with the foll
 - [kakoune](https://github.com/mawww/kakoune) with [kak-tree-sitter](https://sr.ht/~hadronized/kak-tree-sitter/) and [kakoune-lsp](https://github.com/kakoune-lsp/kakoune-lsp) as a text editor.
 - nvm
 - [OpenCode](https://github.com/anomalyco/opencode) for agentic coding.
-- [Superfile](https://github.com/yorukot/superfile) as a terminal file manager.
 - [ripgrep](https://github.com/burntsushi/ripgrep) as a `grep` replacement.
 - [tldr](https://github.com/zellij-org/zellij) for more readable manpages.
 - [wiremix](https://github.com/tsowell/wiremix) for volume control.
