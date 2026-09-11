@@ -20,6 +20,10 @@ zoxide = "latest"
 "cargo:bottom" = "latest"
 "cargo:difftastic" = "latest"
 "cargo:zellij" = "latest"
+# pi = "latest"
+"github:ogulcancelik/herdr" = "latest"
+"cargo:tectonic" = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
 
 # Via GitHub releases
 # "github:plenaryapp/superfile" = "latest"
