@@ -12,7 +12,6 @@
   "tuiMode": "fullscreen",
   "fullscreenExitOutput": "transcript",
   "packages": [
-    "npm:@narumitw/pi-btw",
     "npm:pi-subagents",
     "npm:pi-exa"
   ],
