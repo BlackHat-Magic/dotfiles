@@ -12,7 +12,7 @@
 [merge]
 	conflictStyle = zdiff3
 [diff]
-	external = difft
+	external = "DFT_DISPLAY=inline difft"
 [delta]
 	dark = true
 [filter "opencode-api-keys"]
