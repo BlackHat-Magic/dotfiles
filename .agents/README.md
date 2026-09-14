@@ -23,9 +23,15 @@ I like [`pi-interactive-subagents`](https://github.com/HazAT/pi-interactive-suba
 
 [`pi-observational-memory`](https://github.com/HazAT/pi-interactive-subagents) seems like a good idea, but I feel like bad compaction is kind of a skill issue tbh.
 
+[This video](https://youtu.be/bPcf00mcMTk).
+
 ## Agent Skills
 
 - Source of skills might be [skills.sh](https://skills.sh)
+
+### `ask-me` skill
+
+Taken verbatim from Matt Pocock's [original `grill-me` skill](https://youtu.be/EJyuu6zlQCg). Description was changed and model invocation was disabled.
 
 ### `code-review` Skill
 
@@ -39,7 +45,7 @@ I generally have liked the results from having used Superpowers' `brainstorming`
 
 It might also be prudent to include some aspects of Superpowers' `[dispatching-parallel-subagents](https://github.com/obra/superpowers/blob/main/skills/dispatching-parallel-agents/SKILL.md)`, too. Draft for new version [on rentry](https://rentry.co/using-workflows)
 
-### Wizard Skill
+### `wizard` Skill
 
 Taken straight from [Matt Pocock](https://github.com/mattpocock/skills/tree/main/skills/engineering/wizard). Might move it over to Python/uv/uvx or TypeScript/npx/pnpm/bunx because Bash is a major pain to work with and DX for agents feels slightly less unimportant than I think people give it credit for.
 
