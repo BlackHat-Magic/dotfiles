@@ -16,5 +16,5 @@ justfile
 
 obs/*
 
-README.md
+**/README.md
 LICENSE.md
